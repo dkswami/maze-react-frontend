@@ -16,8 +16,7 @@ const Navigation = () => {
 				<div className='search-box'>
 					<SearchIcon className='search-icon' />
 					<input type="text" className="search-input" placeholder='Search for something here' />		
-				</div>
-				{/* <input type="text" className="search-box" placeholder='Search for something here' />		 */}
+				</div>				
 			</div>
 			<Outlet />
 		</Fragment>

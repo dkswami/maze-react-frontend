@@ -3,7 +3,6 @@
 	width: 990px;
 	height: 60px;
 	margin-top: 20px;
-	/* 	background-color: rgb(231, 231, 231); */
 }
 
 .logo-container {
@@ -49,7 +48,7 @@
 	align-items: center;
 	box-sizing: border-box;
 	position: absolute;
-	width: 761px;
+	width: 702px;
 	height: 56px;
 	left: 497px;
 	top: 20px;
@@ -63,10 +62,8 @@
 
 .search-input {
 	border-style: hidden;
-	width: 680px;
+	width: 628px;
 	height: 52px;
-	left: 497px;
-	top: 20px;
 
 	::placeholder {
 		position: center;
