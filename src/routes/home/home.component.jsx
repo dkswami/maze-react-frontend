@@ -4,7 +4,7 @@ import axios from "axios";
 import { ReactComponent as LiveVideoIcon } from '../../assets/live video.svg';
 import { ReactComponent as PhotosVideosIcon } from '../../assets/photos-videos.svg';
 import { ReactComponent as FeelingIcon } from '../../assets/feeling.svg';
-import  './home.styles.scss';
+import './home.styles.scss';
 import AllPosts from '../../components/all-posts/all-posts.component';
 
 const DefaultpostData = {
@@ -16,8 +16,6 @@ const Home = () => {
 	const [posts, setPosts] = useState([]);
 	const [postData, setPostData] = useState(DefaultpostData);
 
-	const { title, description } = postData;
-	
 	const getAllPosts = async () => {
 		try {
 			const response = await axios.get('http://localhost:3000/api/v1/posts');
@@ -30,18 +28,24 @@ const Home = () => {
 
 	const onChangeHandler = (event) => {
 		const desValue = event.target.value;
-		const titleValue = desValue.slice(0,10);
+		const titleValue = desValue.slice(0, 10);
 
-		setPostData({title:`${titleValue}`, description:`${desValue}`});
+		setPostData({ title: `${titleValue}`, description: `${desValue}` });
 		console.log(postData);
 	}
 
-	const onClickPost = async () => {
-		try {
-			const response = await axios.post('http://localhost:3000/api/v1/posts',postData);
-			console.log(response);
-		} catch (error) {
-			console.error(error);
+	const onClickPostButton = async () => {
+		if (postData == DefaultpostData) {
+			alert("please enter something in post!");
+		} else {
+			try {
+				const response = await axios.post('http://localhost:3000/api/v1/posts', postData);
+				console.log(response);
+				alert("New post created successfully!");
+				window.location.reload();
+			} catch (error) {
+				console.error(error);
+			}
 		}
 	}
 
@@ -52,7 +56,7 @@ const Home = () => {
 	return (
 		<div className='home-container'>
 			<div className='add-post-container'>
-				<input type='text' placeholder="  What's happening ?   First 10 Characters will be taken as title."  onChange={onChangeHandler} />{console.log(description)}
+				<input type='text' placeholder="  What's happening ?   First 10 Characters will be taken as title." onChange={onChangeHandler} />
 				<div className='addons-with-post'>
 					<div className='add-post-item'>
 						<LiveVideoIcon /><span> Live Video</span>
@@ -62,11 +66,10 @@ const Home = () => {
 					</div>
 					<div className='add-post-item'>
 						<FeelingIcon /> <span> Feeling </span>
-					</div>					
+					</div>
 				</div>
-				<button className='add-post-button' onClick={onClickPost }>Post</button>
+				<button className='add-post-button' onClick={onClickPostButton}>Post</button>
 			</div>
-
 			{
 				posts.slice(0).reverse().map((post) => {
 					return <AllPosts key={post.id} post={post} />
