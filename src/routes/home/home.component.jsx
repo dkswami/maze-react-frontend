@@ -4,8 +4,8 @@ import axios from "axios";
 import { ReactComponent as LiveVideoIcon } from '../../assets/live video.svg';
 import { ReactComponent as PhotosVideosIcon } from '../../assets/photos-videos.svg';
 import { ReactComponent as FeelingIcon } from '../../assets/feeling.svg';
-import Post from "../../components/post/post.component";
 import  './home.styles.scss';
+import AllPosts from '../../components/all-posts/all-posts.component';
 
 const DefaultpostData = {
 	title: "",
@@ -52,7 +52,7 @@ const Home = () => {
 	return (
 		<div className='home-container'>
 			<div className='add-post-container'>
-				<input type='text' placeholder="What's happening ?   First 10 Characters will be taken as title."  onChange={onChangeHandler} />{console.log(description)}
+				<input type='text' placeholder="  What's happening ?   First 10 Characters will be taken as title."  onChange={onChangeHandler} />{console.log(description)}
 				<div className='addons-with-post'>
 					<div className='add-post-item'>
 						<LiveVideoIcon /><span> Live Video</span>
@@ -68,8 +68,8 @@ const Home = () => {
 			</div>
 
 			{
-				posts.map((post) => {
-					return <Post key={post.id} post={post} />
+				posts.slice(0).reverse().map((post) => {
+					return <AllPosts key={post.id} post={post} />
 				})
 			}
 		</div>
