@@ -19,7 +19,7 @@ const Home = () => {
 	const getAllPosts = async () => {
 		try {
 			const response = await axios.get('http://localhost:3000/api/v1/posts');
-			console.log(response);
+			console.log(response.data.data);
 			setPosts(response.data.data);
 		} catch (error) {
 			console.error(error);
@@ -40,7 +40,6 @@ const Home = () => {
 		} else {
 			try {
 				const response = await axios.post('http://localhost:3000/api/v1/posts', postData);
-				console.log(response);
 				alert("New post created successfully!");
 				window.location.reload();
 			} catch (error) {

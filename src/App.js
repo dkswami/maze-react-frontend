@@ -9,7 +9,7 @@ function App() {
 	<Routes>
 		<Route path='/' element={ <Navigation /> } >
 			<Route index element={ <Home />} />
-			<Route path='/comments' element={ <CompletePost /> } />
+			<Route path='comments' element={ <CompletePost /> } />
 		</Route>
 	</Routes>
   );
