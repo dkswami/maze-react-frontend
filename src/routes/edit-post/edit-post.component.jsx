@@ -9,11 +9,15 @@ import { PostsContext } from '../../contexts/posts.context';
 
 import './edit-post.styles.scss';
 
+const DefaultpostData = {
+	title: "",
+	description: ""
+}
+
 const EditPost = () => {
 	const { postId } = useParams();
 	var [ postData, setPostData ] = useState({});
-/* 	const { postsDataMap } = useContext(PostsContext);
-	console.warn("posts dataMap value before state",postsDataMap) */
+
 	const getaSinglePost = async (postId) => {
 		try {
 			const response = await axios.get(`http://localhost:3000/api/v1/posts/${postId}`);
@@ -24,8 +28,29 @@ const EditPost = () => {
 			console.error(error);
 		}
 	}
-	console.warn("this is post data",postData.title)
+
 	
+
+	const onChangeHandler = (event) => {
+		const { name, value} = event.target;
+
+		setPostData({...postData, [name] : value});
+		console.log(postData);
+	}
+
+	const onClickPostButton = async () => {
+		if (window.confirm("Do you want to save this post?")) {
+			try {
+				const response = await axios.patch(`http://localhost:3000/api/v1/posts/${postId}`, postData);
+				alert("Post saved successfully!");
+				window.location.href = '/';
+			} catch (error) {
+				console.error(error);
+			}
+		}
+	}
+
+	/* console.warn("this is post data",postData.title)	 */
 
 	useEffect(()=> {		
 		getaSinglePost(postId);
@@ -35,11 +60,11 @@ const EditPost = () => {
 		<div className='edit-post-container'>
 			<div className='input'>
 				<span>Title</span>
-				<input type='text' className='title-input'   defaultValue={postData.title}/>
+				<input type='text' className='title-input'  name="title" defaultValue={postData.title} onChange={onChangeHandler} />
 			</div>
 			<div className='input'>
 				<span>Description</span>
-				<input type='text' className='desc-input'   defaultValue={postData.description}/>
+				<input type='text' className='desc-input'  name="description" defaultValue={postData.description} onChange={onChangeHandler} />
 			</div>			
 			<div className='addons-with-post'>
 				<div className='add-post-item'>
@@ -52,7 +77,7 @@ const EditPost = () => {
 					<FeelingIcon /> <span> Feeling </span>
 				</div>
 			</div>
-			<button className='add-post-button' >Post</button>
+			<button className='add-post-button' onClick={onClickPostButton} >Post</button>
 		</div>
 	)
 }
