@@ -48,10 +48,9 @@ const Post = ({ post }) => {
 			<div className='post-title-container'>
 				<div className="post-title">{post.attributes.title}</div>
 				<span className='post-info'>15h, Public</span>
-				<div className='post-threedots'>
-					<ThreeDots onClick={toggleActionDropdown} />
-				</div>
-				
+				<div className='post-threedots' onClick={toggleActionDropdown} >
+					<ThreeDots />
+				</div>				
 			</div>
 			{isActionDropdownOpen && <ActionDropdown postId={post.id} />}
 			<div className='description'>{post.attributes.description}</div>

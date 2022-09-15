@@ -3,6 +3,7 @@
 	border-radius: 14px;
 	margin-left: 844px;
 	margin-top: -38px;
+	background-color: azure;
 	border: 2px solid rgba(0, 0, 0, 0.15);
 
 	.delete-action {
@@ -11,6 +12,20 @@
 		align-items: flex-start;
 		padding-top: 8px;
 		padding-left: 8px;
+		gap: 14px;
+		height: 44px;
+		width: 136px;
+		padding-top: 10px;
+		padding-right: 10px;
+		cursor: pointer;
+	}
+
+	.edit-action {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		padding-top: 8px;
+		padding-left: 13px;
 		gap: 14px;
 		height: 44px;
 		width: 136px;
