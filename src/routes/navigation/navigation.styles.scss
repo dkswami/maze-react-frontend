@@ -1,22 +1,18 @@
 .navigation-container {
-	display: inline-block;
-	width: 990px;
+	display: flex;
 	height: 60px;
 	margin-top: 20px;
+	margin-bottom: 15px;
 }
 
 .logo-container {
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	gap: 29px;
-	cursor: pointer;
-	position: absolute;
-	width: 128px;
-	height: 34.3px;
-	left: 176px;
-	top: 35px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 29px;
+    cursor: pointer;
+    position: relative;
 }
 
 .logo {
@@ -43,15 +39,12 @@
 
 .search-box {
 	display: flex;
-	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	box-sizing: border-box;
-	position: absolute;
-	width: 702px;
+	position: relative;
+	width: 657px;
 	height: 56px;
-	left: 497px;
-	top: 20px;
+	left: 255px;
 	border: 1px solid rgba(51, 51, 51, 0.3);
 	border-radius: 14px;
 }
@@ -62,7 +55,7 @@
 
 .search-input {
 	border-style: hidden;
-	width: 628px;
+	width: 573px;
 	height: 52px;
 
 	::placeholder {

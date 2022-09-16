@@ -1,12 +1,8 @@
 .post-title-container {
-	height: 40px;
-	width: 999px;
 	margin: 21px;
 }
 
 .post-title {
-	width: 378px;
-	height: 22px;
 	font-family: 'Montserrat';
 	font-style: normal;
 	font-weight: 600;
@@ -17,8 +13,6 @@
 }
 
 .post-info {
-	width: 76px;
-	height: 17px;
 	margin-top: 3px;
 	font-family: 'Montserrat';
 	font-style: normal;
@@ -30,17 +24,13 @@
 }
 
 .post-threedots {
-	width: 38.5px;
-	height: 30px;
-	margin-left: 965px;
+	margin-left: 763px;
 	margin-top: -28px;
 	padding: 5px;
 	cursor: pointer;
 }
 
 .description {
-	width: 957px;
-	height: 42px;
 	margin: 21px;
 	font-family: 'Montserrat';
 	font-style: normal;
@@ -74,9 +64,9 @@
 .add-like-comment-container {
 	display: flex;
 	flex-direction: row;
-	align-items: flex-start;
+	align-items: center;
 	padding: 0px;
-	gap: 194px;
+	gap: 160px;
 	margin-top: 14px;
 	margin-left: 21px;
 
