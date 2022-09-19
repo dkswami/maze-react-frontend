@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import { ReactComponent as ThreeDots } from '../../assets/three-dots.svg';
 import { ReactComponent as SingleDot } from '../../assets/single-dot.svg';
 import { ReactComponent as LikeIcon } from '../../assets/like.svg';
@@ -47,7 +48,7 @@ const Post = ({ post }) => {
 		<>
 			<div className='post-title-container'>
 				<div className="post-title">{post.attributes.title}</div>
-				<span className='post-info'>15h, Public</span>
+				<span className='post-info'>{moment(post.attributes.updated_at).fromNow()}, Public</span>
 				<div className='post-threedots' onClick={toggleActionDropdown} >
 					<ThreeDots />
 				</div>				

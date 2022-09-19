@@ -1,5 +1,6 @@
 import { ReactComponent as CommentLike } from '../../assets/comment-like.svg';
 import './a-comment.styles.scss';
+import moment from 'moment';
 
 const Acomment = ({ comment }) => {
 	return(
@@ -12,7 +13,7 @@ const Acomment = ({ comment }) => {
 				<CommentLike />
 				<span className='comment-like-count'>2</span>		
 			</div>
-			<span className='comment-time'>2h</span>
+			<span className='comment-time'>{moment(comment.attributes.updated_at).fromNow()}</span>
 		</div>
 	)
 }
