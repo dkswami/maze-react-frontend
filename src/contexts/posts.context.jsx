@@ -2,39 +2,30 @@ import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
 export const PostsContext = createContext({
-	postsDataMap: [],
+	wholePostsData: [],
+	wholeCommentsData: []
 });
 
 export const PostsProvider = ({ children }) => {
-	const [ postsDataMap, setPostsDataMap ] = useState([]);
 
-	useEffect(() => {
-		const getAllPosts = async () => {
-			try {
-				const response = await axios.get('http://localhost:3000/api/v1/posts');
-				/* console.log(response.data.data); */
-				setPostsDataMap(response.data.data);
-				/* console.log(postsDataMap[1]) */
-			} catch (error) {
-				console.error(error);
-			}
+	const [ wholePostsData, setWholePostsData ] = useState([]);
+	const [ wholeCommentsData, setWholeCommentsData ] = useState([]);
+
+	const getAllPost = async () => {
+		try {
+			const response = await axios.get('http://localhost:3000/api/v1/posts');
+			setWholePostsData(response.data.data);
+			setWholeCommentsData(response.data.included);
+		} catch (error) {
+			console.error(error);
 		}
-		/* const getaSinglePost = async (postId) => {
-			try {
-				const response = await axios.get(`http://localhost:3000/api/v1/posts/${postId}`);
-				console.log(response.data.data);
-				setPostsDataMap(response.data.data);
-				console.log(postsDataMap)
-			} catch (error) {
-				console.error(error);
-			}
-		}
-		getaSinglePost(postId); */
-		getAllPosts();
-	},[]);
+	}
 	
+	useEffect(()=> {
+		getAllPost();
+	},[]);
 
-	const value = { postsDataMap }
+	const value = { wholePostsData, wholeCommentsData }
 	return(
 		<PostsContext.Provider value={value}>
 			{ children }

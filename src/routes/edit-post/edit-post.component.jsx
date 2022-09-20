@@ -21,15 +21,12 @@ const EditPost = () => {
 	const getaSinglePost = async (postId) => {
 		try {
 			const response = await axios.get(`http://localhost:3000/api/v1/posts/${postId}`);
-			/* console.log(response.data.data.attributes); */
 			setPostData(response.data.data.attributes);
 			
 		} catch (error) {
 			console.error(error);
 		}
-	}
-
-	
+	}	
 
 	const onChangeHandler = (event) => {
 		const { name, value} = event.target;
@@ -48,9 +45,7 @@ const EditPost = () => {
 				console.error(error);
 			}
 		}
-	}
-
-	/* console.warn("this is post data",postData.title)	 */
+	}	/* console.warn("this is post data",postData.title)	 */
 
 	useEffect(()=> {		
 		getaSinglePost(postId);

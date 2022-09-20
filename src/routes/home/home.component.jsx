@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from "axios";
 
 import { ReactComponent as LiveVideoIcon } from '../../assets/live video.svg';
@@ -6,6 +6,7 @@ import { ReactComponent as PhotosVideosIcon } from '../../assets/photos-videos.s
 import { ReactComponent as FeelingIcon } from '../../assets/feeling.svg';
 import './home.styles.scss';
 import AllPosts from '../../components/all-posts/all-posts.component';
+import { PostsContext } from '../../contexts/posts.context';
 
 const DefaultpostData = {
 	title: "",
@@ -13,18 +14,10 @@ const DefaultpostData = {
 }
 
 const Home = () => {
-	const [posts, setPosts] = useState([]);
+	const { wholePostsData, wholeCommentsData } = useContext(PostsContext);
 	const [postData, setPostData] = useState(DefaultpostData);
+	const [ commentData, setCommentData ] = useState([]);
 
-	const getAllPosts = async () => {
-		try {
-			const response = await axios.get('http://localhost:3000/api/v1/posts');
-			console.log(response.data.data);
-			setPosts(response.data.data);
-		} catch (error) {
-			console.error(error);
-		}
-	}
 
 	const onChangeHandler = (event) => {
 		const desValue = event.target.value;
@@ -48,10 +41,6 @@ const Home = () => {
 		}
 	}
 
-	useEffect(() => {
-		getAllPosts();
-	}, []);
-
 	return (
 		<div className='home-container'>
 			<div className='add-post-container'>
@@ -70,8 +59,15 @@ const Home = () => {
 				<button className='add-post-button' onClick={onClickPostButton}>Post</button>
 			</div>
 			{
-				posts.slice(0).reverse().map((post) => {
-					return <AllPosts key={post.id} post={post} />
+				wholePostsData.slice(0).reverse().map((post) => {					
+					wholeCommentsData.map((comment)=> {
+						if( comment.attributes.post_id == post.id) {
+							commentData.push(comment);
+						}							
+					});	
+					const lastComment =  commentData[commentData.length - 1]
+					
+					return <AllPosts key={post.id} post={post} comment={lastComment}/>
 				})
 			}
 		</div>

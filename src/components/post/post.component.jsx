@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 import { ReactComponent as ThreeDots } from '../../assets/three-dots.svg';
 import { ReactComponent as SingleDot } from '../../assets/single-dot.svg';
 import { ReactComponent as LikeIcon } from '../../assets/like.svg';
@@ -66,10 +67,12 @@ const Post = ({ post }) => {
 					<LikeIcon />
 					<span>Like</span>
 				</div>
-				<div className='add'>
-					<CommentIcon />
-					<span>Comment</span>
-				</div>
+				<Link to='/comments'	state={{postId: post.id}}>
+					<div className='add'>
+						<CommentIcon />
+						<span>Comments</span>
+					</div>
+				</Link>
 			</div>
 			<hr className='line2' />
 			<div className='add-a-comment'>
