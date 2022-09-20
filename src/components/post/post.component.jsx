@@ -17,10 +17,11 @@ const DefaultnewCommentData = {
 }
 
 const Post = ({ post }) => {
-	const [isActionDropdownOpen, setIsActionDropdownOpen] = useState(false);
-	const toggleActionDropdown = () => setIsActionDropdownOpen(!isActionDropdownOpen);
-
+	const [isActionDropdownOpen, setIsActionDropdownOpen] = useState(false);	
 	const [ newCommentData, setNewCommentData ] = useState(DefaultnewCommentData);
+	const [ commentsArray, setCommentsArray ] = useState(post.relationships.comments.data);
+
+	const toggleActionDropdown = () => setIsActionDropdownOpen(!isActionDropdownOpen);	
 
 	const onCommentInputChangeHandler = (event) => {
 		const bodyValue = event.target.value;
@@ -59,7 +60,7 @@ const Post = ({ post }) => {
 			<div className='likes-comments-count'>
 				<span>221 Likes</span>
 				<span><SingleDot /></span>
-				<span> 3 Comments</span>
+				<span> {commentsArray.length} Comments</span>
 			</div>
 			<hr className='line1' />
 			<div className='add-like-comment-container'>

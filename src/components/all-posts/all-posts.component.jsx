@@ -6,16 +6,6 @@ import './all-posts.styles.scss';
 
 
 const AllPosts = ({ post, comment }) => {
-	console.log(comment)
-/* 	const commentData = []
-	comments.map((comment)=> {
-			
-			if( comment.attributes.post_id == post.id) {						
-				commentData.push(comment)			
-			}								
-		})
-	console.log(commentData)
-	/* commentData[commentData.length - 1] */
 	return (
 		<>
 			<div className='post-container'> 
