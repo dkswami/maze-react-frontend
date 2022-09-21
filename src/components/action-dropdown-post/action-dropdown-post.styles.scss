@@ -1,10 +1,11 @@
 .action-dropdown-container {
 	position: absolute;
 	border-radius: 14px;
-	margin-left: 640px;
-	margin-top: -39px;
+	margin-left: 619px;
+	margin-top: -26px;
 	background-color: azure;
 	border: 2px solid rgba(0, 0, 0, 0.15);
+	z-index: 1;
 
 	.delete-action {
 		display: flex;

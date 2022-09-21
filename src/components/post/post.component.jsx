@@ -7,7 +7,7 @@ import { ReactComponent as SingleDot } from '../../assets/single-dot.svg';
 import { ReactComponent as LikeIcon } from '../../assets/like.svg';
 import { ReactComponent as CommentIcon } from '../../assets/comments.svg';
 import { ReactComponent as ArrowIcon } from '../../assets/arrow.svg';
-import ActionDropdown from '../action-dropdown/action-dropdown.component';
+import ActionDropdownPost from '../action-dropdown-post/action-dropdown-post.component';
 
 import './post.styles.scss';
 
@@ -55,7 +55,7 @@ const Post = ({ post }) => {
 					<ThreeDots />
 				</div>				
 			</div>
-			{isActionDropdownOpen && <ActionDropdown postId={post.id} />}
+			{isActionDropdownOpen && <ActionDropdownPost postId={post.id} />}
 			<div className='description'>{post.attributes.description}</div>
 			<div className='likes-comments-count'>
 				<span>221 Likes</span>
