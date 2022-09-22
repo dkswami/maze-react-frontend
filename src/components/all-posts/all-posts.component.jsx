@@ -1,16 +1,25 @@
+import { useContext } from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Post from '../../components/post/post.component';
+import { PostsContext } from '../../contexts/posts.context';
 import Acomment from '../a-comment/a-comment.component';
 import './all-posts.styles.scss';
 
 
 const AllPosts = ({ post, comment }) => {
+	const { wholeCommentsData } = useContext(PostsContext);
+	console.log(post);
+	console.log(comment);
+
 	return (
 		<>
-			<div className='post-container'> 
-				<Post post={post} />				
-				<Acomment comment={comment} />
+			<div className='post-container'>
+				<Post post={post} />
+				{
+					typeof( comment) !== "undefined" ? (<Acomment comment={comment} />) : <></>
+				}				
 			</div>
 		</>
 	)

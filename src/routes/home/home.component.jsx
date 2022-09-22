@@ -12,12 +12,12 @@ const DefaultpostData = {
 	title: "",
 	description: ""
 }
+var filteredData = [];
+
 
 const Home = () => {
 	const { wholePostsData, wholeCommentsData } = useContext(PostsContext);
 	const [postData, setPostData] = useState(DefaultpostData);
-	const [ commentData, setCommentData ] = useState([]);
-
 
 	const onChangeHandler = (event) => {
 		const desValue = event.target.value;
@@ -59,15 +59,11 @@ const Home = () => {
 				<button className='add-post-button' onClick={onClickPostButton}>Post</button>
 			</div>
 			{
-				wholePostsData.slice(0).reverse().map((post) => {					
-					wholeCommentsData.map((comment)=> {
-						if( comment.attributes.post_id == post.id) {
-							commentData.push(comment);
-						}							
-					});	
-					const lastComment =  commentData[commentData.length - 1]
+				wholePostsData.slice(0).reverse().map((post) => {
+					filteredData = wholeCommentsData.filter(comments => comments.attributes.post_id == post.id)
+					const lastComment = filteredData[filteredData?.length - 1];
 					
-					return <AllPosts key={post.id} post={post} comment={lastComment}/>
+					return <AllPosts key={post.id} post={post} comment={ lastComment } />					
 				})
 			}
 		</div>
