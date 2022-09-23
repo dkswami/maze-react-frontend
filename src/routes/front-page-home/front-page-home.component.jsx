@@ -15,7 +15,7 @@ const FrontPageHome = () => {
 					Create Account
 				</Button>
 				<span>OR</span>
-				<Button variant="outline-light" size="lg">
+				<Button variant="light" size="lg">
 					Login
 				</Button>
 			</div>
