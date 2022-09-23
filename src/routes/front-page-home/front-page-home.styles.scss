@@ -1,0 +1,30 @@
+.front-home-container {
+	text-align: center;	
+	letter-spacing: 0.01em;
+	color: #FFFFFF;
+	font-weight: 600;
+
+	.front-home-content {
+		position: absolute;
+		left: 23.19%;
+		right: 25.21%;
+		top: 24.51%;
+		bottom: 63.77%;
+		font-family: 'Poppins';
+		line-height: 150%;
+		font-style: normal;		
+		font-size: 40px;
+	}
+
+	span {
+		position: absolute;
+		left: 22.43%;
+		right: 25.97%;
+		top: 41.8%;
+		bottom: 55.27%;
+		font-family: 'Montserrat';
+		font-style: normal;
+		font-size: 20px;
+		line-height: 150%;
+	}
+}

@@ -68,7 +68,7 @@ const Post = ({ post }) => {
 					<LikeIcon />
 					<span>Like</span>
 				</div>
-				<Link to='/comments'	state={{postId: post.id}}>
+				<Link to='/users/comments'	state={{postId: post.id}}>
 					<div className='add'>
 						<CommentIcon />
 						<span>Comments</span>
