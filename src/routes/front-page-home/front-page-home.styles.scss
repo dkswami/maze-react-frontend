@@ -1,5 +1,5 @@
 .front-home-container {
-	text-align: center;	
+	text-align: center;
 	letter-spacing: 0.01em;
 	color: #FFFFFF;
 	font-weight: 600;
@@ -12,7 +12,7 @@
 		bottom: 63.77%;
 		font-family: 'Poppins';
 		line-height: 150%;
-		font-style: normal;		
+		font-style: normal;
 		font-size: 40px;
 	}
 
@@ -26,5 +26,35 @@
 		font-style: normal;
 		font-size: 20px;
 		line-height: 150%;
+	}
+}
+
+.front-home-actions {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 10%;
+	position: absolute;
+	left: 33.58%;
+	top: 48.24%;
+
+	Button {
+		width: 206px;
+		height: 48px;
+		font-weight: 450;
+		font-size: 14px;
+		line-height: 17px;
+		letter-spacing: 0.03em;
+	}
+
+	span {
+		font-family: 'Montserrat';
+		font-style: normal;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 150%;
+		text-align: center;
+		letter-spacing: 0.01em;
+		color: #FFFFFF;
 	}
 }
