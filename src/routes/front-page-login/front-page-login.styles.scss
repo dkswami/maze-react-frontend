@@ -1,17 +1,16 @@
-.signup-container {
+.login-container {
 	position: relative;
-	width: 80%;
-	/* height: 70%; */
+	width: 35%;
 	padding-top: 3%;
 	padding-bottom: 3%;
-	left: 11%;
+	left: 30%;
 	top: 4%;
 	background: linear-gradient(152.97deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
 	backdrop-filter: blur(21px);
 	border-radius: 16px;
 }
 
-.signup-content {
+.login-content {
 	position: relative;
 	left: 11%;
 	top: 6%;
@@ -20,14 +19,11 @@
 	Button {
 		margin-top: 4%;
 		width: 206px;
-	height: 48px;
+		height: 48px;
 	}
 }
 
-.signup-heading {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
+.login-heading {
 	width: 322px;
 	height: 79px;
 
@@ -42,26 +38,16 @@
 		letter-spacing: -0.02em;
 		color: #FFFFFF;
 	}
-
-	span {
-		font-family: "Montserrat";
-		font-style: normal;
-		font-weight: 400;
-		font-size: 14px;
-		line-height: 140%;
-		letter-spacing: -0.02em;
-		color: #F9FAFB;
-	}
 }
 
-.signup-fields-container {
-	display: grid;
-	grid-template-columns: auto auto;
-	gap: 11%;
-	padding-top: 30px;
+.login-fields-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 20px;
 }
 
-.signup-checkbox {
+.login-checkbox {
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -69,7 +55,7 @@
 	color: white;
 }
 
-.already-login {
+.new-login {
 	position: relative;
 	margin-top: 4%;
 	color: #FFFFFF;
@@ -80,3 +66,4 @@
 		color: #007AFF;
 	}
 }
+
