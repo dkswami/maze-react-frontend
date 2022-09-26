@@ -9,7 +9,7 @@ const Navigation = () => {
 	return (
 		<Fragment>
 			<div className='navigation-container'>
-				<Link className='logo-container' to='/'>
+				<Link className='logo-container' to='/users/'>
 					<MazeLogo className='logo' />
 					<span className='logo-text'> Maze</span>
 				</Link>

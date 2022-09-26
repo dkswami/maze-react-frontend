@@ -8,23 +8,26 @@ import FrontPageHome from "./routes/front-page-home/front-page-home.component";
 import FrontPageSignup from "./routes/front-page-signup/front-page-signup.component";
 import FrontPageLogin from "./routes/front-page-login/front-page-login.component";
 
-
 function App() {
-  return (
-	<Routes>
-		<Route path="/" element={ <FrontPageNav />} >
-			<Route index element={ <FrontPageHome /> } />
-			<Route path="/signup" element={ <FrontPageSignup />} />
-			<Route path='/login' element={ <FrontPageLogin />} />
-			<Route path='/users' element={ <Navigation /> } >
-				<Route index element={ <Home />} />
-				<Route path='/users/comments' element={ <CompletePost /> } />
-				<Route path= '/users/edit/:postId' element={ <EditPost /> } />			
-			</Route>
-		</Route>
-			
-	</Routes>
-  );
+	return (
+		<>
+			<Routes>
+				<Route path="/" element={<FrontPageNav />} >
+					<Route index element={<FrontPageHome />} />
+					<Route path="/signup" element={<FrontPageSignup />} />
+					<Route path='/login' element={<FrontPageLogin />} />					
+				</Route>
+			</Routes>
+			<Routes>
+				<Route path='users/' element={<Navigation />} >
+					<Route index element={<Home />} />
+					<Route path='/users/comments' element={<CompletePost />} />
+					<Route path='/users/edit/:postId' element={<EditPost />} />
+				</Route>
+			</Routes>
+		</>
+
+	);
 }
 
 export default App;

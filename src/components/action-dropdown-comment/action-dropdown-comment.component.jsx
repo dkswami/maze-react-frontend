@@ -44,7 +44,7 @@ const ActionDropdownComment = ({ comment }) => {
 		try {
 			const response = await axios.patch(`http://localhost:3000/api/v1/comments/${comment.id}`, updatedComment);
 			alert("Comment saved successfully!");
-			window.location.href = '/';
+			window.location.href = '/users/';
 		} catch (error) {
 			console.error(error);
 		}
