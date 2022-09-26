@@ -1,0 +1,32 @@
+.frontpage-input-field {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 0px;
+	gap: 4px;
+	position: relative;
+	width: 358px;
+	height: 72px;
+
+	span {
+		font-family: 'Montserrat';
+		font-style: normal;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 140%;
+		letter-spacing: -0.02em;
+		color: #F9FAFB;
+	}
+
+	input {
+		box-sizing: border-box;
+		position: absolute;
+		left: 0%;
+		right: 0%;
+		top: 33.33%;
+		bottom: 0%;
+		background: #FFFFFF;
+		border: 1px solid #D1D1D1;
+		border-radius: 5px;
+	}
+}

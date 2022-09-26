@@ -1,5 +1,6 @@
 import './front-page-home.styles.scss';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const FrontPageHome = () => {
 	return (
@@ -11,9 +12,11 @@ const FrontPageHome = () => {
 				<span>Discover with Maze</span>
 			</div>
 			<div className='front-home-actions'>
-				<Button variant="primary" size="lg">
-					Create Account
-				</Button>
+				<Link to='/signup'>
+					<Button variant="primary" size="lg">
+						Create Account
+					</Button>
+				</Link>
 				<span>OR</span>
 				<Button variant="light" size="lg">
 					Login
