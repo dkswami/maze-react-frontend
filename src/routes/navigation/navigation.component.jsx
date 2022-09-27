@@ -22,14 +22,13 @@ const Navigation = () => {
 	return (
 		<>
 			<div className='users-home-container'>
-				<div className='navigation-container inactive'>
+				<div className='navigation-container'>
 					<div className='top-section'>
 						<Link className='logo-container' to='/users/feeds'>
 							<MazeLogo className='logo' />
 							<span className='logo-text'> Maze</span>
 						</Link>
 					</div>
-
 					<NavLink to='/users/feeds' className={({ isActive }) => isActive ? `active` : undefined}>
 						<div className='menu-item'>
 							<GridViewIcon />
@@ -42,11 +41,9 @@ const Navigation = () => {
 							<span>Profile</span>
 						</div>
 					</NavLink>
-					<div className={`menu-item`} >
-						<Link className='menu-item-container' to='/users' >
-							<LogoutIcon />
-							<span>Logout</span>
-						</Link>
+					<div className='menu-item'>
+						<LogoutIcon />
+						<span>Logout</span>
 					</div>
 				</div>
 				<div className='search-box'>
