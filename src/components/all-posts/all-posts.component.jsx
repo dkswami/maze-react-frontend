@@ -10,9 +10,7 @@ import './all-posts.styles.scss';
 
 const AllPosts = ({ post, comment }) => {
 	const { wholeCommentsData } = useContext(PostsContext);
-	console.log(post);
-	console.log(comment);
-
+	
 	return (
 		<>
 			<div className='post-container'>

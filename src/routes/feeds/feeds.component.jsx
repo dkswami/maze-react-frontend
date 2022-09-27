@@ -4,7 +4,7 @@ import axios from "axios";
 import { ReactComponent as LiveVideoIcon } from '../../assets/live video.svg';
 import { ReactComponent as PhotosVideosIcon } from '../../assets/photos-videos.svg';
 import { ReactComponent as FeelingIcon } from '../../assets/feeling.svg';
-import './home.styles.scss';
+import './feeds.styles.scss';
 import AllPosts from '../../components/all-posts/all-posts.component';
 import { PostsContext } from '../../contexts/posts.context';
 
@@ -12,10 +12,8 @@ const DefaultpostData = {
 	title: "",
 	description: ""
 }
-var filteredData = [];
 
-
-const Home = () => {
+const Feeds = () => {
 	const { wholePostsData, wholeCommentsData } = useContext(PostsContext);
 	const [postData, setPostData] = useState(DefaultpostData);
 
@@ -60,7 +58,7 @@ const Home = () => {
 			</div>
 			{
 				wholePostsData.slice(0).reverse().map((post) => {
-					filteredData = wholeCommentsData.filter(comments => comments.attributes.post_id == post.id)
+					const filteredData = wholeCommentsData.filter(comments => comments.attributes.post_id == post.id)
 					const lastComment = filteredData[filteredData?.length - 1];
 					
 					return <AllPosts key={post.id} post={post} comment={ lastComment } />					
@@ -70,4 +68,4 @@ const Home = () => {
 	)
 }
 
-export default Home;
+export default Feeds;
