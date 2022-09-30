@@ -16,7 +16,7 @@
 	top: 6%;
 	width: 69%;
 
-	Button {
+	.login-button {
 		margin-top: 4%;
 		width: 206px;
 		height: 48px;
@@ -67,3 +67,13 @@
 	}
 }
 
+.password-title {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 140%;
+	letter-spacing: -0.02em;
+	color: #F9FAFB;
+	margin-bottom: 5px;
+}

@@ -12,7 +12,9 @@ import './navigation.styles.scss';
 const Profile = () => {
 	return (
 		<div>
-			This is Profile page
+			<h2>
+				This is Profile page
+				</h2>
 		</div>
 	)
 }
