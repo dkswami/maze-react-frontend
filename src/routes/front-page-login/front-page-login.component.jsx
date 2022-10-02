@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FormControl, FormControlLabel, Checkbox, InputAdornment, IconButton, OutlinedInput, TextField, InputLabel, Input } from '@mui/material';
+import { FormControl, FormControlLabel, Checkbox, InputAdornment, IconButton, Input } from '@mui/material';
 import { Button } from 'react-bootstrap';
 import FrontPageInput from '../../components/front-page-input/front-page-input.component';
 import Visibility from '@mui/icons-material/Visibility';
@@ -29,30 +29,6 @@ const FrontPageLogin = () => {
 	const handleSubmit = () => {
 
 	}
-
-	/* const PasswordInput = () => {
-		return (
-			<Input
-				id="password"
-				type={showPassword ? 'text' : 'password'}
-				name="password"
-				value={password}
-				onChange={handleChange}
-				required
-				endAdornment={
-					<InputAdornment position="end">
-						<IconButton
-							aria-label="toggle password visibility"
-							onClick={() => setShowPassword(!showPassword)}
-							onMouseDown={() => setShowPassword(!showPassword)}
-							edge="end">
-							{showPassword ? <Visibility /> : <VisibilityOff />}
-						</IconButton>
-					</InputAdornment>
-				}
-			/>
-		)
-	} */
 
 	return (
 		<div className='login-container'>
