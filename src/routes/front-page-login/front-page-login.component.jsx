@@ -32,7 +32,7 @@ const FrontPageLogin = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const response = await loginWithEmailAndPassword(formFields);
-		console.log(response);
+
 		const access_token = localStorage.getItem('access_token')
 		if (access_token) {
 			Navigate('/users/feeds')

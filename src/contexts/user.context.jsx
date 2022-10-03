@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { getCurrentUser } from "../utils/axios.api";
 
 export const UserContext = createContext({
 	currentUser: null,
@@ -10,14 +11,6 @@ export const UserContext = createContext({
 export const UserProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-/* 	useEffect(() => {
-		const user = localStorage.getItem("user");
-		if (user) {
-			setCurrentUser(JSON.parse(user));
-			setIsLoggedIn(true);
-		}
-	}, []); */
 
 	return (
 		<UserContext.Provider value={{ currentUser, isLoggedIn, setCurrentUser, setIsLoggedIn }}>

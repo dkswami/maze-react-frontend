@@ -25,6 +25,7 @@ export const loginWithEmailAndPassword = async ({email, password}) => {
 		localStorage.setItem("access_token", response.data.access_token);
 		return response.data;		
 	} catch (error) {	
+		console.log(error)
 		return error.response.data;
 	}
 }
@@ -43,6 +44,7 @@ export const SignupWithEmailAndPassword = async ({firstName, lastName, phoneNumb
 		localStorage.setItem("access_token", response.data.access_token);
 		return response.data;		
 	} catch (error) {	
+		
 		return error.response.data;
 	}
 }

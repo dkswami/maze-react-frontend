@@ -7,14 +7,7 @@ import FrontPageNav from "./routes/front-page-nav/front-page-nav.component";
 import FrontPageHome from "./routes/front-page-home/front-page-home.component";
 import FrontPageSignup from "./routes/front-page-signup/front-page-signup.component";
 import FrontPageLogin from "./routes/front-page-login/front-page-login.component";
-
-const Profile = () => {
-	return(
-		<div style={{ align: 'center' }}>
-		This is Profile page
-		</div>
-	)	
-}
+import Profile from "./routes/profile/profile.component";
 
 function App() {
 	return (
@@ -35,7 +28,6 @@ function App() {
 				</Route>
 			</Routes>
 		</>
-
 	);
 }
 
