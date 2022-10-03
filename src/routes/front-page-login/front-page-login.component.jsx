@@ -27,7 +27,7 @@ const FrontPageLogin = () => {
 	}
 
 	const handleSubmit = () => {
-
+		
 	}
 
 	return (

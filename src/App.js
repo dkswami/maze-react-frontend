@@ -10,7 +10,7 @@ import FrontPageLogin from "./routes/front-page-login/front-page-login.component
 
 const Profile = () => {
 	return(
-		<div>
+		<div style={{ align: 'center' }}>
 		This is Profile page
 		</div>
 	)	
