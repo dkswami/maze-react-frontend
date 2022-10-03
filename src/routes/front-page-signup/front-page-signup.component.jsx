@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { FormControl, FormControlLabel, Checkbox, InputAdornment, IconButton, Input } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Button } from 'react-bootstrap';
 import FrontPageInput from '../../components/front-page-input/front-page-input.component';
 import './front-page-signup.styles.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Box } from '@mui/system';
+import { SignupWithEmailAndPassword } from '../../utils/axios.api';
+import { UserContext } from '../../contexts/user.context';
 
 const defaultFormFields = {
 	firstName: '',
@@ -21,6 +23,8 @@ const FrontPageSignup = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const [showPassword, setShowPassword] = useState(false);
 	const { firstName, lastName, email, phoneNumber, password, confirmPassword } = formFields;
+	const Navigate = useNavigate();
+	const { setIsLoggedIn } = useContext(UserContext);
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
@@ -28,14 +32,23 @@ const FrontPageSignup = () => {
 		setFormFields({ ...formFields, [name]: value });
 	}
 
-	const handleSubmit = () => {
-
-	}
-
-	const PasswordBox = () => {
-		return (
-			<></>
-		)
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		console.log(formFields)
+		const response = await SignupWithEmailAndPassword(formFields);
+		console.log(response);
+		const access_token = localStorage.getItem('access_token')
+		if (access_token) {
+			Navigate('/users/feeds')
+			setIsLoggedIn(true);
+		}
+		switch (response.error) {
+			case 'invalid_grant':
+				alert('Incorrect credentials ! ');
+				break;
+			default:
+				console.log(response);
+		}
 	}
 
 	return (

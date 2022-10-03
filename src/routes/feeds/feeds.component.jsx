@@ -22,7 +22,6 @@ const Feeds = () => {
 		const titleValue = desValue.slice(0, 10);
 
 		setPostData({ title: `${titleValue}`, description: `${desValue}` });
-		console.log(postData);
 	}
 
 	const onClickPostButton = async () => {

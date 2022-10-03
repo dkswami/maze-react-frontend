@@ -7,16 +7,19 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { PostsProvider } from './contexts/posts.context';
+import { UserProvider } from './contexts/user.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-	<BrowserRouter>
-		<PostsProvider>
-			<App />
-		</PostsProvider>		
-	</BrowserRouter>
-  </React.StrictMode>
+	<React.StrictMode>
+		<BrowserRouter>
+			<UserProvider>
+				<PostsProvider>
+					<App />
+				</PostsProvider>
+			</UserProvider>
+		</BrowserRouter>
+	</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

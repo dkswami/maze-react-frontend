@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import { Outlet, Link, NavLink } from 'react-router-dom';
+import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom';
 
 import { ReactComponent as MazeLogo } from '../../assets/Maze.svg';
 import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg';
@@ -14,12 +14,21 @@ const Profile = () => {
 		<div>
 			<h2>
 				This is Profile page
-				</h2>
+			</h2>
 		</div>
 	)
 }
 
+
 const Navigation = () => {
+	const Navigate = useNavigate();
+
+	const HandleLogoutClick = () => {
+		if (window.confirm("Are you sure to logout?")) {
+			localStorage.removeItem('access_token');
+			Navigate('/login');
+		}
+	}
 
 	return (
 		<>
@@ -43,7 +52,7 @@ const Navigation = () => {
 							<span>Profile</span>
 						</div>
 					</NavLink>
-					<div className='menu-item'>
+					<div className='menu-item' onClick={HandleLogoutClick}>
 						<LogoutIcon />
 						<span>Logout</span>
 					</div>
