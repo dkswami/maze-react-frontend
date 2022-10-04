@@ -9,6 +9,8 @@ import { ReactComponent as CommentIcon } from '../../assets/comments.svg';
 import { ReactComponent as ArrowIcon } from '../../assets/arrow.svg';
 import ActionDropdownPost from '../action-dropdown-post/action-dropdown-post.component';
 
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 import './post.styles.scss';
 
 const DefaultnewCommentData = {
@@ -20,6 +22,7 @@ const Post = ({ post }) => {
 	const [isActionDropdownOpen, setIsActionDropdownOpen] = useState(false);	
 	const [ newCommentData, setNewCommentData ] = useState(DefaultnewCommentData);
 	const [ commentsArray, setCommentsArray ] = useState(post.relationships.comments.data);
+	const [ isLiked, setIsLiked ] = useState(false);
 
 	const toggleActionDropdown = () => setIsActionDropdownOpen(!isActionDropdownOpen);	
 
@@ -64,9 +67,11 @@ const Post = ({ post }) => {
 			</div>
 			<hr className='line1' />
 			<div className='add-like-comment-container'>
-				<div className='add'>
-					<LikeIcon />
-					<span>Like</span>
+				<div className={`add `} onClick={() => setIsLiked(!isLiked)}>
+					
+					{ isLiked ? <FavoriteIcon sx={{color: 'red'}}/> : <LikeIcon /> }
+					
+					<span>{ isLiked ? "Unlike" : "Like" }</span>
 				</div>
 				<Link to='/users/comments'	state={{postId: post.id}}>
 					<div className='add'>

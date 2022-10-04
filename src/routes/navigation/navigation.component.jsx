@@ -23,7 +23,7 @@ const Profile = () => {
 
 const Navigation = () => {
 	const Navigate = useNavigate();
-	const  { setIsLoggedIn } = useContext(UserContext);
+	const { setIsLoggedIn } = useContext(UserContext);
 
 	const HandleLogoutClick = () => {
 		if (window.confirm("Are you sure to logout?")) {
@@ -60,10 +60,13 @@ const Navigation = () => {
 						<span>Logout</span>
 					</div>
 				</div>
-				<div className='search-box'>
-					<SearchIcon className='search-icon' />
-					<input type="text" className="search-input" placeholder='Search for something here' />
+				<div className='top-nav-bar'>
+					<div className='search-box'>
+						<SearchIcon className='search-icon' />
+						<input type="text" className="search-input" placeholder='Search for something here' />
+					</div>
 				</div>
+
 			</div>
 			<Outlet />
 		</>

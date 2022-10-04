@@ -51,7 +51,7 @@ const FrontPageLogin = () => {
 		<div className='login-container'>
 			<div className='login-content'>
 				<div className='login-heading'>
-					<h2>Create Account</h2>
+					<h2>Login into Account</h2>
 				</div>
 				<form onSubmit={handleSubmit}>
 					<div className='login-fields-container'>

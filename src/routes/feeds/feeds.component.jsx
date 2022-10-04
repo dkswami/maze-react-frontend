@@ -62,7 +62,7 @@ const Feeds = () => {
 				<button className='add-post-button' onClick={onClickPostButton}>Post</button>
 			</div>
 			{
-				wholePostsData.slice(0).reverse().map((post) => {
+				wholePostsData && wholePostsData.slice(0).reverse().map((post) => {
 					const filteredData = wholeCommentsData.filter(comments => comments.attributes.post_id == post.id)
 					const lastComment = filteredData[filteredData?.length - 1];
 
