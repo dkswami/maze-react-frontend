@@ -28,8 +28,14 @@ const Feeds = () => {
 		if (postData == DefaultpostData) {
 			alert("please enter something in post!");
 		} else {
+			const access_token = localStorage.getItem('access_token')
+			const config = {
+				headers: {
+					Authorization: `Bearer ${access_token}`,
+				},
+			}
 			try {
-				const response = await axios.post('http://localhost:3000/api/v1/posts', postData);
+				const response = await axios.post('http://localhost:3000/api/v1/posts', postData, config);
 				alert("New post created successfully!");
 				window.location.reload();
 			} catch (error) {
@@ -59,8 +65,8 @@ const Feeds = () => {
 				wholePostsData.slice(0).reverse().map((post) => {
 					const filteredData = wholeCommentsData.filter(comments => comments.attributes.post_id == post.id)
 					const lastComment = filteredData[filteredData?.length - 1];
-					
-					return <AllPosts key={post.id} post={post} comment={ lastComment } />					
+
+					return <AllPosts key={post.id} post={post} comment={lastComment} />
 				})
 			}
 		</div>

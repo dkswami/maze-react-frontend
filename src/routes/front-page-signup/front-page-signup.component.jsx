@@ -34,21 +34,29 @@ const FrontPageSignup = () => {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		console.log(formFields)
-		const response = await SignupWithEmailAndPassword(formFields);
-		console.log(response);
-		const access_token = localStorage.getItem('access_token')
-		if (access_token) {
-			Navigate('/users/feeds')
-			setIsLoggedIn(true);
+
+		if (password !== confirmPassword) {
+			alert("Passwords don't match");
+		} else {
+			const response = await SignupWithEmailAndPassword(formFields);
+			console.log(response);
+			const access_token = localStorage.getItem('access_token')
+			if (access_token) {
+				Navigate('/users/feeds')
+				setIsLoggedIn(true);
+			}
+			switch (response.errors[0]) {
+				case 'invalid_grant':
+					alert('Incorrect credentials ! ');
+					break;
+				case 'Email has already been taken':
+					alert('Email has already been taken ! ');
+					break;
+				default:
+					console.log(response);
+			}
 		}
-		switch (response.error) {
-			case 'invalid_grant':
-				alert('Incorrect credentials ! ');
-				break;
-			default:
-				console.log(response);
-		}
+
 	}
 
 	return (
@@ -111,7 +119,7 @@ const FrontPageSignup = () => {
 					</div>
 					<div className='signup-checkbox'>
 						<FormControlLabel control={<Checkbox color="success" />} label="Remember me" />
-						<FormControlLabel control={<Checkbox color="success" />} label={`I agree to all the Terms and Privacy policy`} />
+						<FormControlLabel control={<Checkbox color="success" required />} label={`I agree to all the Terms and Privacy policy`} required />
 					</div>
 					<Button className='login-button' type='submit' variant="primary" size="lg">
 						Login

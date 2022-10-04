@@ -30,10 +30,8 @@ export const PostsProvider = ({ children }) => {
 	}
 	
 	useEffect(()=> {
-		if(isLoggedIn){
 			getAllPost();
-		}
-	},[isLoggedIn]);
+	},[]);
 
 	const value = { wholePostsData, wholeCommentsData }
 	return(
