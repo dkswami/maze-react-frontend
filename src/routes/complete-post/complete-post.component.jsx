@@ -10,24 +10,30 @@ const CompletePost = () => {
 	const location = useLocation();
 	const { postId } = location.state;
 
-	const { wholePostsData, wholeCommentsData } = useContext(PostsContext);
+	const { wholePostsData } = useContext(PostsContext);
 
-	return(
+	return (
 		<>
 			<div className='all-comments-container'>
 				{wholePostsData.map((post) => {
 					if (post.id === postId) {
 						return (
-							<Post key={post.id} post={post} />							
+							<>
+								<Post key={post.id} post={post} />
+								<h2>Comments</h2>
+								{post.comments.map((comment) => {
+									return <Acomment key={comment.id} comment={comment} />
+								})}
+							</>
 						);
-					}									
+					}
 				})}
-				<h2>Comments</h2>
-				{ wholeCommentsData.map((comment)=> {
+
+				{/* { wholePostsData.map(()=> {
 					if( comment.attributes.post_id == postId) {
 						return <Acomment key={comment.id} comment={comment} />
 					}					
-				})}
+				})} */}
 			</div>
 		</>
 	)

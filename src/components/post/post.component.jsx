@@ -21,7 +21,7 @@ const DefaultnewCommentData = {
 const Post = ({ post }) => {
 	const [isActionDropdownOpen, setIsActionDropdownOpen] = useState(false);	
 	const [ newCommentData, setNewCommentData ] = useState(DefaultnewCommentData);
-	const [ commentsArray, setCommentsArray ] = useState(post.relationships.comments.data);
+	const [ commentsArray, setCommentsArray ] = useState(post.comments);
 	const [ isLiked, setIsLiked ] = useState(false);
 
 	const toggleActionDropdown = () => setIsActionDropdownOpen(!isActionDropdownOpen);	
@@ -52,14 +52,14 @@ const Post = ({ post }) => {
 	return (
 		<>
 			<div className='post-title-container'>
-				<div className="post-title">{post.attributes.title}</div>
-				<span className='post-info'>{moment(post.attributes.updated_at).fromNow()}, Public</span>
+				<div className="post-title">{post.title}</div>
+				<span className='post-info'>{moment(post.updated_at).fromNow()}, Public</span>
 				<div className='post-threedots' onClick={toggleActionDropdown} >
 					<ThreeDots />
 				</div>				
 			</div>
 			{isActionDropdownOpen && <ActionDropdownPost postId={post.id} />}
-			<div className='description'>{post.attributes.description}</div>
+			<div className='description'>{post.description}</div>
 			<div className='likes-comments-count'>
 				<span>221 Likes</span>
 				<span><SingleDot /></span>

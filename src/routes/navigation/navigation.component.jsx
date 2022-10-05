@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useContext } from 'react'
 import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom';
+import profilePic from '../../assets/default-profile-pic.png';
 
 import { ReactComponent as MazeLogo } from '../../assets/Maze.svg';
 import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg';
@@ -23,8 +24,8 @@ const Profile = () => {
 
 const Navigation = () => {
 	const Navigate = useNavigate();
-	const { setIsLoggedIn } = useContext(UserContext);
-
+	const { currentUser, setIsLoggedIn } = useContext(UserContext);
+	console.log(currentUser);
 	const HandleLogoutClick = () => {
 		if (window.confirm("Are you sure to logout?")) {
 			localStorage.removeItem('access_token');
@@ -65,8 +66,11 @@ const Navigation = () => {
 						<SearchIcon className='search-icon' />
 						<input type="text" className="search-input" placeholder='Search for something here' />
 					</div>
+					<div className='user-info-dp'>
+						<span>{  currentUser ? `${currentUser.first_name} ${currentUser.last_name}` : '' }</span>
+						<img src={profilePic} alt='user dp' />
+					</div>
 				</div>
-
 			</div>
 			<Outlet />
 		</>

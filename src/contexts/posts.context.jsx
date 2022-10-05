@@ -9,34 +9,37 @@ export const PostsContext = createContext({
 
 export const PostsProvider = ({ children }) => {
 
-	const [ wholePostsData, setWholePostsData ] = useState([]);
-	const [ wholeCommentsData, setWholeCommentsData ] = useState([]);
+	const [wholePostsData, setWholePostsData] = useState([]);
+	const [wholeCommentsData, setWholeCommentsData] = useState([]);
 	const { isLoggedIn } = useContext(UserContext);
 
-	const getAllPost = async () => {
-		const access_token = localStorage.getItem('access_token')
-		const config = {
-			headers: {
-				Authorization: `Bearer ${access_token}`,
-			},
+
+
+	useEffect(() => {
+		const getAllPost = async () => {
+			const access_token = localStorage.getItem('access_token')
+			const config = {
+				headers: {
+					Authorization: `Bearer ${access_token}`,
+				},
+			}
+			try {
+				const response = await axios.get('http://localhost:3000/api/v1/posts', config);
+				console.log(response)
+				setWholePostsData(response.data);
+				setWholeCommentsData(response.data.included);
+			} catch (error) {
+				console.error(error);
+			}
 		}
-		try {
-			const response = await axios.get('http://localhost:3000/api/v1/posts', config);
-			setWholePostsData(response.data.data);
-			setWholeCommentsData(response.data.included);
-		} catch (error) {
-			console.error(error);
-		}
-	}
-	
-	useEffect(()=> {
-			getAllPost();
-	},[]);
+
+		getAllPost();
+	}, []);
 
 	const value = { wholePostsData, wholeCommentsData }
-	return(
+	return (
 		<PostsContext.Provider value={value}>
-			{ children }
+			{children}
 		</PostsContext.Provider>
 	)
 }

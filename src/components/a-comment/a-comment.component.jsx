@@ -17,7 +17,7 @@ const Acomment = ({ comment }) => {
 			<hr className='comment-line' />
 			<div className='comment-body-container'>
 				<span className='comment-body'>
-					{comment.attributes.body}
+					{comment.body}
 				</span>
 				<div className='comment-threedots' onClick={toggleActionDropdown} >
 					<ThreeDots />
@@ -28,7 +28,7 @@ const Acomment = ({ comment }) => {
 				<CommentLike />
 				<span className='comment-like-count'>2</span>
 			</div>
-			<span className='comment-time'>{moment(comment.attributes.updated_at).fromNow()}</span>
+			<span className='comment-time'>{moment(comment.updated_at).fromNow()}</span>
 		</div>
 	)
 }

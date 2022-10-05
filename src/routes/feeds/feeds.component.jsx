@@ -16,6 +16,7 @@ const DefaultpostData = {
 const Feeds = () => {
 	const { wholePostsData, wholeCommentsData } = useContext(PostsContext);
 	const [postData, setPostData] = useState(DefaultpostData);
+	console.log(wholePostsData);
 
 	const onChangeHandler = (event) => {
 		const desValue = event.target.value;
@@ -63,12 +64,17 @@ const Feeds = () => {
 			</div>
 			{
 				wholePostsData && wholePostsData.slice(0).reverse().map((post) => {
+					return <AllPosts key={post.id} post={post}  comments={post.comments}/>
+				})
+			}
+			{/* {
+				wholePostsData && wholePostsData.slice(0).reverse().map((post) => {
 					const filteredData = wholeCommentsData.filter(comments => comments.attributes.post_id == post.id)
 					const lastComment = filteredData[filteredData?.length - 1];
 
 					return <AllPosts key={post.id} post={post} comment={lastComment} />
 				})
-			}
+			} */}
 		</div>
 	)
 }
