@@ -16,7 +16,6 @@ const DefaultpostData = {
 const Feeds = () => {
 	const { wholePostsData, wholeCommentsData } = useContext(PostsContext);
 	const [postData, setPostData] = useState(DefaultpostData);
-	console.log(wholePostsData);
 
 	const onChangeHandler = (event) => {
 		const desValue = event.target.value;

@@ -9,14 +9,13 @@ export const UserContext = createContext({
 });
 
 export const UserProvider = ({ children }) => {
-	const [currentUser, setCurrentUser] = useState(null);
+	const [currentUser, setCurrentUser] = useState({});
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	useEffect(() => {		
 		const getUser = async () => {			
 			const access_token = localStorage.getItem('access_token')
 			const response = await getCurrentUser(access_token);
-			console.log(response);
 			if (response) {
 				setCurrentUser(response);
 				setIsLoggedIn(true);

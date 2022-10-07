@@ -10,7 +10,6 @@ export const PostsContext = createContext({
 export const PostsProvider = ({ children }) => {
 
 	const [wholePostsData, setWholePostsData] = useState([]);
-	const [wholeCommentsData, setWholeCommentsData] = useState([]);
 	const { isLoggedIn } = useContext(UserContext);
 
 
@@ -25,9 +24,7 @@ export const PostsProvider = ({ children }) => {
 			}
 			try {
 				const response = await axios.get('http://localhost:3000/api/v1/posts', config);
-				console.log(response)
-				setWholePostsData(response.data);
-				setWholeCommentsData(response.data.included);
+				setWholePostsData(response.data);				
 			} catch (error) {
 				console.error(error);
 			}
@@ -36,7 +33,7 @@ export const PostsProvider = ({ children }) => {
 		getAllPost();
 	}, []);
 
-	const value = { wholePostsData, wholeCommentsData }
+	const value = { wholePostsData}
 	return (
 		<PostsContext.Provider value={value}>
 			{children}

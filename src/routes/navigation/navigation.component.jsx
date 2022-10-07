@@ -11,21 +11,9 @@ import { UserContext } from '../../contexts/user.context';
 
 import './navigation.styles.scss';
 
-const Profile = () => {
-	return (
-		<div>
-			<h2>
-				This is Profile page
-			</h2>
-		</div>
-	)
-}
-
-
 const Navigation = () => {
 	const Navigate = useNavigate();
 	const { currentUser, setIsLoggedIn } = useContext(UserContext);
-	console.log(currentUser);
 	const HandleLogoutClick = () => {
 		if (window.confirm("Are you sure to logout?")) {
 			localStorage.removeItem('access_token');
