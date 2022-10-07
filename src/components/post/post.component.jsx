@@ -23,6 +23,7 @@ const Post = ({ post }) => {
 	const [ newCommentData, setNewCommentData ] = useState(DefaultnewCommentData);
 	const [ commentsArray, setCommentsArray ] = useState(post.comments);
 	const [ isLiked, setIsLiked ] = useState(false);
+	console.log(post)
 
 	const toggleActionDropdown = () => setIsActionDropdownOpen(!isActionDropdownOpen);	
 
@@ -53,7 +54,7 @@ const Post = ({ post }) => {
 		<>
 			<div className='post-title-container'>
 				<div className="post-title">{post.title}</div>
-				<span className='post-info'>{moment(post.updated_at).fromNow()}, Public</span>
+				<span className='post-info'>{moment(post.updated_at).fromNow()}, {post.post_status}</span>
 				<div className='post-threedots' onClick={toggleActionDropdown} >
 					<ThreeDots />
 				</div>				

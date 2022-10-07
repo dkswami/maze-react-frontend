@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from "axios";
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 import { ReactComponent as LiveVideoIcon } from '../../assets/live video.svg';
 import { ReactComponent as PhotosVideosIcon } from '../../assets/photos-videos.svg';
@@ -7,27 +8,38 @@ import { ReactComponent as FeelingIcon } from '../../assets/feeling.svg';
 import './feeds.styles.scss';
 import AllPosts from '../../components/all-posts/all-posts.component';
 import { PostsContext } from '../../contexts/posts.context';
+import { UserContext } from '../../contexts/user.context';
 
 const DefaultpostData = {
 	title: "",
-	description: ""
+	description: "",
+	user_id: "", 
+	post_status: ""
 }
 
 const Feeds = () => {
 	const { wholePostsData, wholeCommentsData } = useContext(PostsContext);
+	const { currentUser } = useContext(UserContext);
 	const [postData, setPostData] = useState(DefaultpostData);
+	const { description, post_status } = postData;
 
 	const onChangeHandler = (event) => {
-		const desValue = event.target.value;
-		const titleValue = desValue.slice(0, 10);
+		const { name, value } = event.target;	/* const titleValue = desValue.slice(0, 10); */
 
-		setPostData({ title: `${titleValue}`, description: `${desValue}` });
+		setPostData({			
+			...postData,
+			[name]: value,
+			title: `${currentUser.first_name} ${currentUser.last_name}`,
+			user_id: currentUser.id
+		});
+		
 	}
 
 	const onClickPostButton = async () => {
 		if (postData == DefaultpostData) {
 			alert("please enter something in post!");
 		} else {
+			console.log(postData)
 			const access_token = localStorage.getItem('access_token')
 			const config = {
 				headers: {
@@ -47,7 +59,7 @@ const Feeds = () => {
 	return (
 		<div className='home-container'>
 			<div className='add-post-container'>
-				<input type='text' placeholder="  What's happening ?   First 10 Characters will be taken as title." onChange={onChangeHandler} />
+				<input type='text' name='description' /* value={description} */ placeholder="  What's happening ?   First 10 Characters will be taken as title." onChange={onChangeHandler} />
 				<div className='addons-with-post'>
 					<div className='add-post-item'>
 						<LiveVideoIcon /><span> Live Video</span>
@@ -59,11 +71,23 @@ const Feeds = () => {
 						<FeelingIcon /> <span> Feeling </span>
 					</div>
 				</div>
-				<button className='add-post-button' onClick={onClickPostButton}>Post</button>
+				<FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+					<InputLabel id="demo-select-small">Status</InputLabel>
+					<Select labelId="demo-select-small"
+						id="demo-select-small"
+						name='post_status'
+						value={post_status}
+						label="post_status"
+						onChange={onChangeHandler}>
+						<MenuItem value={'public'}>public</MenuItem>
+						<MenuItem value={'private'}>private</MenuItem>						
+					</Select>
+				</FormControl>
+					<button className='add-post-button' onClick={onClickPostButton}>Post</button>
 			</div>
 			{
 				wholePostsData && wholePostsData.slice(0).reverse().map((post) => {
-					return <AllPosts key={post.id} post={post}  comments={post.comments}/>
+					return <AllPosts key={post.id} post={post} comments={post.comments} />
 				})
 			}
 			{/* {
