@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,7 @@ import { ReactComponent as LikeIcon } from '../../assets/like.svg';
 import { ReactComponent as CommentIcon } from '../../assets/comments.svg';
 import { ReactComponent as ArrowIcon } from '../../assets/arrow.svg';
 import ActionDropdownPost from '../action-dropdown-post/action-dropdown-post.component';
+import { UserContext } from '../../contexts/user.context';
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
@@ -15,15 +16,15 @@ import './post.styles.scss';
 
 const DefaultnewCommentData = {
 	body: "",
-	post_id: ""
+	post_id: "",
+	user_id: ""
 }
 
 const Post = ({ post }) => {
 	const [isActionDropdownOpen, setIsActionDropdownOpen] = useState(false);	
 	const [ newCommentData, setNewCommentData ] = useState(DefaultnewCommentData);
-	const [ commentsArray, setCommentsArray ] = useState(post.comments);
 	const [ isLiked, setIsLiked ] = useState(false);
-	console.log(post)
+	const  { currentUser } = useContext(UserContext);
 
 	const toggleActionDropdown = () => setIsActionDropdownOpen(!isActionDropdownOpen);	
 
@@ -31,8 +32,7 @@ const Post = ({ post }) => {
 		const bodyValue = event.target.value;
 		const idValue = post.id;
 
-		setNewCommentData({ body: `${bodyValue}`, post_id: `${idValue}` });
-		console.log(newCommentData);
+		setNewCommentData({ body: `${bodyValue}`, post_id: `${idValue}`, user_id: `${currentUser.id}` });		
 	}
 
 
@@ -64,7 +64,7 @@ const Post = ({ post }) => {
 			<div className='likes-comments-count'>
 				<span>221 Likes</span>
 				<span><SingleDot /></span>
-				<span> {commentsArray.length} Comments</span>
+				<span> {post.comments.length} Comments</span>
 			</div>
 			<hr className='line1' />
 			<div className='add-like-comment-container'>
