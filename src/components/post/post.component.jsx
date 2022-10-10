@@ -21,18 +21,18 @@ const DefaultnewCommentData = {
 }
 
 const Post = ({ post }) => {
-	const [isActionDropdownOpen, setIsActionDropdownOpen] = useState(false);	
-	const [ newCommentData, setNewCommentData ] = useState(DefaultnewCommentData);
-	const [ isLiked, setIsLiked ] = useState(false);
-	const  { currentUser } = useContext(UserContext);
+	const [isActionDropdownOpen, setIsActionDropdownOpen] = useState(false);
+	const [newCommentData, setNewCommentData] = useState(DefaultnewCommentData);
+	const [isLiked, setIsLiked] = useState(false);
+	const { currentUser } = useContext(UserContext);
 
-	const toggleActionDropdown = () => setIsActionDropdownOpen(!isActionDropdownOpen);	
+	const toggleActionDropdown = () => setIsActionDropdownOpen(!isActionDropdownOpen);
 
 	const onCommentInputChangeHandler = (event) => {
 		const bodyValue = event.target.value;
 		const idValue = post.id;
 
-		setNewCommentData({ body: `${bodyValue}`, post_id: `${idValue}`, user_id: `${currentUser.id}` });		
+		setNewCommentData({ body: `${bodyValue}`, post_id: `${idValue}`, user_id: `${currentUser.id}` });
 	}
 
 
@@ -57,7 +57,7 @@ const Post = ({ post }) => {
 				<span className='post-info'>{moment(post.updated_at).fromNow()}, {post.post_status}</span>
 				<div className='post-threedots' onClick={toggleActionDropdown} >
 					<ThreeDots />
-				</div>				
+				</div>
 			</div>
 			{isActionDropdownOpen && <ActionDropdownPost postId={post.id} />}
 			<div className='description'>{post.description}</div>
@@ -69,12 +69,12 @@ const Post = ({ post }) => {
 			<hr className='line1' />
 			<div className='add-like-comment-container'>
 				<div className={`add `} onClick={() => setIsLiked(!isLiked)}>
-					
-					{ isLiked ? <FavoriteIcon sx={{color: 'red'}}/> : <LikeIcon /> }
-					
-					<span>{ isLiked ? "Unlike" : "Like" }</span>
+
+					{isLiked ? <FavoriteIcon sx={{ color: 'red' }} /> : <LikeIcon />}
+
+					<span>{isLiked ? "Unlike" : "Like"}</span>
 				</div>
-				<Link to='/users/comments'	state={{postId: post.id}}>
+				<Link to='/users/comments' state={{ postId: post.id }}>
 					<div className='add'>
 						<CommentIcon />
 						<span>Comments</span>

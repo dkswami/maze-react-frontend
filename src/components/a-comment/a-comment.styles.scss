@@ -5,23 +5,30 @@
 	}
 
 	.comment-body-container {
-
-		.comment-body {
+		.comment-user {
 			font-family: "Montserrat";
-			font-style: normal;
-			font-weight: 400;
-			font-size: 18px;
-			line-height: 22px;
-			color: #606165;
-			margin-left: 27px;
+		font-style: normal;
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 22px;
+		margin-left: 27px;
 		}
-
 		.comment-threedots {
 			margin-left: 763px;
 			margin-top: -28px;
 			padding: 5px;
 			cursor: pointer;
 		}
+	}
+
+	.comment-body {
+		font-family: "Montserrat";
+		font-style: normal;
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 22px;
+		color: #606165;
+		margin-left: 34px;
 	}
 
 	.comment-info {
