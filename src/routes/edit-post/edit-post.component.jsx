@@ -16,38 +16,46 @@ const DefaultpostData = {
 
 const EditPost = () => {
 	const { postId } = useParams();
-	var [ postData, setPostData ] = useState({});
+	var [postData, setPostData] = useState({});
+	console.log(postData)
+
+	const access_token = localStorage.getItem('access_token')
+	const config = {
+		headers: {
+			Authorization: `Bearer ${access_token}`,
+		},
+	}
 
 	const getaSinglePost = async (postId) => {
 		try {
-			const response = await axios.get(`http://localhost:3000/api/v1/posts/${postId}`);
-			setPostData(response.data.data.attributes);
-			
+			const response = await axios.get(`http://localhost:3000/api/v1/posts/${postId}`, config);
+			setPostData(response);
+
 		} catch (error) {
 			console.error(error);
 		}
-	}	
+	}
 
 	const onChangeHandler = (event) => {
-		const { name, value} = event.target;
+		const { name, value } = event.target;
 
-		setPostData({...postData, [name] : value});
+		setPostData({ ...postData, [name]: value });
 		console.log(postData);
 	}
 
 	const onClickPostButton = async () => {
 		if (window.confirm("Do you want to save this post?")) {
 			try {
-				const response = await axios.patch(`http://localhost:3000/api/v1/posts/${postId}`, postData);
+				const response = await axios.patch(`http://localhost:3000/api/v1/posts/${postId}`, postData, config);
 				alert("Post saved successfully!");
-				window.location.href = '/';
+				window.location.href = '/users/feeds';
 			} catch (error) {
 				console.error(error);
 			}
 		}
 	}	/* console.warn("this is post data",postData.title)	 */
 
-	useEffect(()=> {		
+	useEffect(() => {
 		getaSinglePost(postId);
 	}, [postId]);
 
@@ -55,12 +63,12 @@ const EditPost = () => {
 		<div className='edit-post-container'>
 			<div className='input'>
 				<span>Title</span>
-				<input type='text' className='title-input'  name="title" defaultValue={postData.title} onChange={onChangeHandler} />
+				<input type='text' className='title-input' name="title" defaultValue={postData.title} onChange={onChangeHandler} />
 			</div>
 			<div className='input'>
 				<span>Description</span>
-				<input type='text' className='desc-input'  name="description" defaultValue={postData.description} onChange={onChangeHandler} />
-			</div>			
+				<input type='text' className='desc-input' name="description" defaultValue={postData.description} onChange={onChangeHandler} />
+			</div>
 			<div className='addons-with-post'>
 				<div className='add-post-item'>
 					<LiveVideoIcon /><span> Live Video</span>

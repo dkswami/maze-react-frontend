@@ -13,7 +13,7 @@ import { UserContext } from '../../contexts/user.context';
 const DefaultpostData = {
 	title: "",
 	description: "",
-	user_id: "", 
+	user_id: "",
 	post_status: ""
 }
 
@@ -26,13 +26,13 @@ const Feeds = () => {
 	const onChangeHandler = (event) => {
 		const { name, value } = event.target;	/* const titleValue = desValue.slice(0, 10); */
 
-		setPostData({			
+		setPostData({
 			...postData,
 			[name]: value,
 			title: `${currentUser.first_name} ${currentUser.last_name}`,
 			user_id: currentUser.id
 		});
-		
+
 	}
 
 	const onClickPostButton = async () => {
@@ -59,7 +59,7 @@ const Feeds = () => {
 	return (
 		<div className='home-container'>
 			<div className='add-post-container'>
-				<input type='text' name='description' /* value={description} */ placeholder="  What's happening ?   First 10 Characters will be taken as title." onChange={onChangeHandler} />
+				<input type='text' name='description' /* value={description} */ placeholder="What's happening ?   First 10 Characters will be taken as title." onChange={onChangeHandler} />
 				<div className='addons-with-post'>
 					<div className='add-post-item'>
 						<LiveVideoIcon /><span> Live Video</span>
@@ -70,20 +70,20 @@ const Feeds = () => {
 					<div className='add-post-item'>
 						<FeelingIcon /> <span> Feeling </span>
 					</div>
+					<FormControl sx={{ m: 1, minWidth: 120 }} size="small" required>
+						<InputLabel id="demo-select-small">Status</InputLabel>
+						<Select labelId="demo-select-small"
+							id="demo-select-small"
+							name='post_status'
+							value={post_status}
+							label="post_status"
+							onChange={onChangeHandler} required>
+							<MenuItem value={'public'}>public</MenuItem>
+							<MenuItem value={'private'}>private</MenuItem>
+						</Select>
+					</FormControl>
 				</div>
-				<FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-					<InputLabel id="demo-select-small">Status</InputLabel>
-					<Select labelId="demo-select-small"
-						id="demo-select-small"
-						name='post_status'
-						value={post_status}
-						label="post_status"
-						onChange={onChangeHandler}>
-						<MenuItem value={'public'}>public</MenuItem>
-						<MenuItem value={'private'}>private</MenuItem>						
-					</Select>
-				</FormControl>
-					<button className='add-post-button' onClick={onClickPostButton}>Post</button>
+				<button type='submit' className='add-post-button' onClick={onClickPostButton}>Post</button>
 			</div>
 			{
 				wholePostsData && wholePostsData.slice(0).reverse().map((post) => {

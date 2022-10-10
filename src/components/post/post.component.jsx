@@ -41,6 +41,7 @@ const Post = ({ post }) => {
 			alert("please enter something in comment!");
 		} else {
 			try {
+				
 				const response = await axios.post('http://localhost:3000/api/v1/comments', newCommentData);
 				alert("New comment added successfully!");
 				window.location.reload();
@@ -83,7 +84,7 @@ const Post = ({ post }) => {
 			</div>
 			<hr className='line2' />
 			<div className='add-a-comment'>
-				<input type='text' placeholder='  Write a comment' onChange={onCommentInputChangeHandler} />
+				<input type='text' placeholder='Write a comment' onChange={onCommentInputChangeHandler} />
 				<div className='add-comment-button' onClick={addCommentHandler}>
 					<ArrowIcon className='arrow-icon' />
 				</div>

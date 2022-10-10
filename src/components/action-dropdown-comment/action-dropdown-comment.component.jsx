@@ -14,17 +14,23 @@ const DefaultupdatedComment = {
 
 const ActionDropdownComment = ({ comment }) => {
 	const [show, setShow] = useState(false);
-	const [updatedComment, setUpdatedComment ] = useState(DefaultupdatedComment);
+	const [updatedComment, setUpdatedComment] = useState(DefaultupdatedComment);
 
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-
+	console.log(comment);
 
 	console.log(comment.id);
 	const deleteHandler = async () => {
 		if (window.confirm("Do you want to delete this comment?")) {
 			try {
-				const response = await axios.delete(`http://localhost:3000/api/v1/comments/${comment.id}`);
+				const access_token = localStorage.getItem('access_token')
+				const config = {
+					headers: {
+						Authorization: `Bearer ${access_token}`,
+					},
+				}
+				const response = await axios.delete(`http://localhost:3000/api/v1/comments/${comment.id}`, config);
 				console.log(response);
 				alert("comment deleted successfully!");
 				window.location.reload();
@@ -37,14 +43,20 @@ const ActionDropdownComment = ({ comment }) => {
 
 	const onChangeHandler = (event) => {
 		const bodyValue = event.target.value;
-		setUpdatedComment({ body:`${bodyValue}`});
+		setUpdatedComment({ body: `${bodyValue}` });
 	}
 
 	const editHandler = async () => {
 		try {
-			const response = await axios.patch(`http://localhost:3000/api/v1/comments/${comment.id}`, updatedComment);
+			const access_token = localStorage.getItem('access_token')
+				const config = {
+					headers: {
+						Authorization: `Bearer ${access_token}`,
+					},
+				}
+			const response = await axios.patch(`http://localhost:3000/api/v1/comments/${comment.id}`, updatedComment, config);
 			alert("Comment saved successfully!");
-			window.location.href = '/users/';
+			window.location.href = '/users/feeds';
 		} catch (error) {
 			console.error(error);
 		}
@@ -70,8 +82,8 @@ const ActionDropdownComment = ({ comment }) => {
 				<Modal.Body>
 					<Form>
 						<Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1"	>
-							<Form.Label>Example textarea</Form.Label>
-							<Form.Control as="textarea" rows={3} defaultValue={comment.attributes.body} onChange={onChangeHandler} autoFocus/>
+							<Form.Label>Comment by {comment.commented_by.first_name} {comment.commented_by.last_name}</Form.Label>
+							<Form.Control as="textarea" rows={3} defaultValue={comment.body} onChange={onChangeHandler} autoFocus />
 						</Form.Group>
 					</Form>
 				</Modal.Body>

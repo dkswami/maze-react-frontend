@@ -9,7 +9,13 @@ const ActionDropdownPost = ({ postId }) => {
 	const deleteHandler = async () => {
 		if (window.confirm("Do you want to delete this post?")) {
 			try {
-				const response = await axios.delete(`http://localhost:3000/api/v1/posts/${postId}`);
+				const access_token = localStorage.getItem('access_token')
+				const config = {
+					headers: {
+						Authorization: `Bearer ${access_token}`,
+					},
+				}
+				const response = await axios.delete(`http://localhost:3000/api/v1/posts/${postId}`, config);
 				console.log(response);
 				alert("Post deleted successfully!");
 				window.location.reload();

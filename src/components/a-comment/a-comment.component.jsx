@@ -11,7 +11,6 @@ import './a-comment.styles.scss';
 const Acomment = ({ comment }) => {
 	const [isActionDropdownOpen, setIsActionDropdownOpen] = useState(false);
 	const toggleActionDropdown = () => setIsActionDropdownOpen(!isActionDropdownOpen);
-	console.log(comment);
 
 	return (
 		<div className='a-comment-container'>
