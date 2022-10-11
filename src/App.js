@@ -9,6 +9,7 @@ import FrontPageSignup from "./routes/front-page-signup/front-page-signup.compon
 import FrontPageLogin from "./routes/front-page-login/front-page-login.component";
 import Profile from "./routes/profile/profile.component";
 import RequireAuth from "./utils/require-auth";
+import ManageUsers from "./routes/manage-users/manage-users.component";
 
 function App() {
 	return (
@@ -24,6 +25,7 @@ function App() {
 				<Route path='/users' element={ <RequireAuth> <Navigation /> </RequireAuth>} >
 					<Route index path='/users/feeds' element={<RequireAuth> <Feeds /></RequireAuth>} />
 					<Route path="/users/profile" element={<Profile />} />
+					<Route path='/users/manageusers' element={<ManageUsers />} />
 					<Route path='/users/comments' element={<CompletePost />} />
 					<Route path='/users/edit/:postId' element={<EditPost />} />
 				</Route>

@@ -9,6 +9,7 @@ import './feeds.styles.scss';
 import AllPosts from '../../components/all-posts/all-posts.component';
 import { PostsContext } from '../../contexts/posts.context';
 import { UserContext } from '../../contexts/user.context';
+import UserList from '../../components/user-list/user-list.component';
 
 const DefaultpostData = {
 	title: "",
@@ -38,8 +39,8 @@ const Feeds = () => {
 	const onClickPostButton = async () => {
 		if (postData == DefaultpostData) {
 			alert("please enter something in post!");
-		} 
-		if(post_status == "") {
+		}
+		if (post_status == "") {
 			alert("please select post status!");
 		}
 		else {
@@ -61,43 +62,45 @@ const Feeds = () => {
 	}
 
 	return (
-		<div className='home-container'>
-			<div className='add-post-container'>
-				<form>
-					<input type='text' name='description' /* value={description} */ placeholder="What's happening ?   First 10 Characters will be taken as title." onChange={onChangeHandler} />
-					<div className='addons-with-post'>
-						<div className='add-post-item'>
-							<LiveVideoIcon /><span> Live Video</span>
+		<>
+			{currentUser.role === 'admin' ? <UserList /> : null}
+			<div className='home-container'>
+				<div className='add-post-container'>
+					<form>
+						<input type='text' name='description' /* value={description} */ placeholder="What's happening ?   First 10 Characters will be taken as title." onChange={onChangeHandler} />
+						<div className='addons-with-post'>
+							<div className='add-post-item'>
+								<LiveVideoIcon /><span> Live Video</span>
+							</div>
+							<div className='add-post-item'>
+								<PhotosVideosIcon /> <span> Photo/Video</span>
+							</div>
+							<div className='add-post-item'>
+								<FeelingIcon /> <span> Feeling </span>
+							</div>
+							<FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+								<InputLabel id="demo-select-small">Status</InputLabel>
+								<Select labelId="demo-select-small"
+									id="demo-select-small"
+									name='post_status'
+									value={post_status}
+									label="post_status"
+									onChange={onChangeHandler} >
+									<MenuItem value={'public'}>public</MenuItem>
+									<MenuItem value={'private'}>private</MenuItem>
+								</Select>
+							</FormControl>
 						</div>
-						<div className='add-post-item'>
-							<PhotosVideosIcon /> <span> Photo/Video</span>
-						</div>
-						<div className='add-post-item'>
-							<FeelingIcon /> <span> Feeling </span>
-						</div>
-						<FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-							<InputLabel id="demo-select-small">Status</InputLabel>
-							<Select labelId="demo-select-small"
-								id="demo-select-small"
-								name='post_status'
-								value={post_status}
-								label="post_status"
-								onChange={onChangeHandler} >
-								<MenuItem value={'public'}>public</MenuItem>
-								<MenuItem value={'private'}>private</MenuItem>
-							</Select>
-						</FormControl>
-					</div>
-					<button type='submit' className='add-post-button' onClick={onClickPostButton}>Post</button>
-				</form>
+						<button type='submit' className='add-post-button' onClick={onClickPostButton}>Post</button>
+					</form>
+				</div>
+				{
+					wholePostsData && wholePostsData.slice(0).reverse().map((post) => {
+						return <AllPosts key={post.id} post={post} comments={post.comments} />
+					})
+				}
 			</div>
-			{
-				wholePostsData && wholePostsData.slice(0).reverse().map((post) => {
-					return <AllPosts key={post.id} post={post} comments={post.comments} />
-				})
-			}
-			
-		</div>
+		</>
 	)
 }
 

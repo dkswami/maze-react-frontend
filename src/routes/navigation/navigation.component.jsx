@@ -10,7 +10,6 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { UserContext } from '../../contexts/user.context';
 
 import './navigation.styles.scss';
-import UserList from '../../components/user-list/user-list.component';
 
 const Navigation = () => {
 	const Navigate = useNavigate();
@@ -74,7 +73,7 @@ const Navigation = () => {
 				</div>
 			</div>
 			<Outlet />
-			{currentUser.role === 'admin' ? <UserList /> : null}
+			
 		</>
 	)
 }
