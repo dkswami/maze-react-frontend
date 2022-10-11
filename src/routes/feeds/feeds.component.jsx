@@ -38,7 +38,11 @@ const Feeds = () => {
 	const onClickPostButton = async () => {
 		if (postData == DefaultpostData) {
 			alert("please enter something in post!");
-		} else {
+		} 
+		if(post_status == "") {
+			alert("please select post status!");
+		}
+		else {
 			console.log(postData)
 			const access_token = localStorage.getItem('access_token')
 			const config = {
@@ -59,45 +63,40 @@ const Feeds = () => {
 	return (
 		<div className='home-container'>
 			<div className='add-post-container'>
-				<input type='text' name='description' /* value={description} */ placeholder="What's happening ?   First 10 Characters will be taken as title." onChange={onChangeHandler} />
-				<div className='addons-with-post'>
-					<div className='add-post-item'>
-						<LiveVideoIcon /><span> Live Video</span>
+				<form>
+					<input type='text' name='description' /* value={description} */ placeholder="What's happening ?   First 10 Characters will be taken as title." onChange={onChangeHandler} />
+					<div className='addons-with-post'>
+						<div className='add-post-item'>
+							<LiveVideoIcon /><span> Live Video</span>
+						</div>
+						<div className='add-post-item'>
+							<PhotosVideosIcon /> <span> Photo/Video</span>
+						</div>
+						<div className='add-post-item'>
+							<FeelingIcon /> <span> Feeling </span>
+						</div>
+						<FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+							<InputLabel id="demo-select-small">Status</InputLabel>
+							<Select labelId="demo-select-small"
+								id="demo-select-small"
+								name='post_status'
+								value={post_status}
+								label="post_status"
+								onChange={onChangeHandler} >
+								<MenuItem value={'public'}>public</MenuItem>
+								<MenuItem value={'private'}>private</MenuItem>
+							</Select>
+						</FormControl>
 					</div>
-					<div className='add-post-item'>
-						<PhotosVideosIcon /> <span> Photo/Video</span>
-					</div>
-					<div className='add-post-item'>
-						<FeelingIcon /> <span> Feeling </span>
-					</div>
-					<FormControl sx={{ m: 1, minWidth: 120 }} size="small" required>
-						<InputLabel id="demo-select-small">Status</InputLabel>
-						<Select labelId="demo-select-small"
-							id="demo-select-small"
-							name='post_status'
-							value={post_status}
-							label="post_status"
-							onChange={onChangeHandler} required>
-							<MenuItem value={'public'}>public</MenuItem>
-							<MenuItem value={'private'}>private</MenuItem>
-						</Select>
-					</FormControl>
-				</div>
-				<button type='submit' className='add-post-button' onClick={onClickPostButton}>Post</button>
+					<button type='submit' className='add-post-button' onClick={onClickPostButton}>Post</button>
+				</form>
 			</div>
 			{
 				wholePostsData && wholePostsData.slice(0).reverse().map((post) => {
 					return <AllPosts key={post.id} post={post} comments={post.comments} />
 				})
 			}
-			{/* {
-				wholePostsData && wholePostsData.slice(0).reverse().map((post) => {
-					const filteredData = wholeCommentsData.filter(comments => comments.attributes.post_id == post.id)
-					const lastComment = filteredData[filteredData?.length - 1];
-
-					return <AllPosts key={post.id} post={post} comment={lastComment} />
-				})
-			} */}
+			
 		</div>
 	)
 }

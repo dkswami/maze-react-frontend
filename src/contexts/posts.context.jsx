@@ -10,13 +10,10 @@ export const PostsContext = createContext({
 export const PostsProvider = ({ children }) => {
 
 	const [wholePostsData, setWholePostsData] = useState([]);
-	const { isLoggedIn } = useContext(UserContext);
-
-
 
 	useEffect(() => {
-		const getAllPost = async () => {
-			const access_token = localStorage.getItem('access_token')
+		const access_token = localStorage.getItem('access_token')
+		const getAllPost = async () => {			
 			const config = {
 				headers: {
 					Authorization: `Bearer ${access_token}`,
@@ -29,8 +26,9 @@ export const PostsProvider = ({ children }) => {
 				console.error(error);
 			}
 		}
-
-		getAllPost();
+		if(access_token) {
+			getAllPost();
+		}
 	}, []);
 
 	const value = { wholePostsData}

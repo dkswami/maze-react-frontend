@@ -1,5 +1,7 @@
 .home-container {
-	padding: 7em 14em 0 14em;
+	padding: 7em 15em 0 14em;
+	overflow-x: hidden;
+	margin: auto;
 }
 
 .add-post-container {
@@ -11,7 +13,7 @@
 	background-color: white;
 
 	input {
-		width: 805px;
+		width: 778px;
 		height: 45px;
 		margin: 20px 21px 0px 21px;
 		background: #f3f3f3;
@@ -62,8 +64,8 @@
 	gap: 10px;
 	width: 116px;
 	height: 45px;
-	margin-left: 708px;
-	margin-top: -38px;
+	margin-left: 680px;
+	margin-top: -50px;
 	background: #1197cd;
 	border-radius: 10px;
 	border: none;

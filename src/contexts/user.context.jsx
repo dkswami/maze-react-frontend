@@ -12,16 +12,21 @@ export const UserProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState({});
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-	useEffect(() => {		
-		const getUser = async () => {			
-			const access_token = localStorage.getItem('access_token')
-			const response = await getCurrentUser(access_token);
-			if (response) {
-				setCurrentUser(response);
-				setIsLoggedIn(true);
+	useEffect(() => {
+		const access_token = localStorage.getItem('access_token')
+		const getUser = async () => {
+			try {				
+				const response = await getCurrentUser(access_token);
+				if (response) {
+					setCurrentUser(response);
+				}
+			} catch (error) {
+				console.log(error)
 			}
 		}
-		getUser();
+		if(access_token) {
+			getUser();
+		}
 	}, []);
 
 	return (

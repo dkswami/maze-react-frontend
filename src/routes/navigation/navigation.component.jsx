@@ -10,6 +10,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { UserContext } from '../../contexts/user.context';
 
 import './navigation.styles.scss';
+import UserList from '../../components/user-list/user-list.component';
 
 const Navigation = () => {
 	const Navigate = useNavigate();
@@ -24,46 +25,49 @@ const Navigation = () => {
 
 	return (
 		<>
-			<div className='users-home-container'>
-				<div className='navigation-container'>
-					<div className='top-section'>
-						<Link className='logo-container' to='/users/feeds'>
-							<MazeLogo className='logo' />
-							<span className='logo-text'> Maze</span>
-						</Link>
-					</div>
-					<NavLink to='/users/feeds' className={({ isActive }) => isActive ? `active` : undefined}>
-						<div className='menu-item'>
-							<GridViewIcon />
-							<span>Feeds</span>
-						</div>
-					</NavLink>
-					<NavLink to='/users/profile' className={({ isActive }) => isActive ? `active` : undefined}>
-						<div className='menu-item'>
-							<PersonIcon />
-							<span>Profile</span>
-						</div>
-					</NavLink>
-					<div className='menu-item' onClick={HandleLogoutClick}>
-						<LogoutIcon />
-						<span>Logout</span>
-					</div>
+			<div className='top-nav-bar'>
+				<div className='logo-section'>
+					<Link className='logo-container' to='/users/feeds'>
+						<MazeLogo className='logo' />
+						<span className='logo-text'> Maze</span>
+					</Link>
 				</div>
-				<div className='top-nav-bar'>
-					<div className='search-box'>
-						<SearchIcon className='search-icon' />
-						<input type="text" className="search-input" placeholder='Search for something here' />
-					</div>
+				<div className='search-box'>
+					<SearchIcon className='search-icon' />
+					<input type="text" className="search-input" placeholder='Search for something here' />
+				</div>
+				<div className='user-list-info'>
 					<div className='user-info-dp'>
-						<span>{  currentUser ? `${currentUser.first_name} ${currentUser.last_name}` : '' }</span>
 						<img src={profilePic} alt='user dp' />
+						<div className='user-info'>
+							<span className='user-name'>{currentUser ? `${currentUser.first_name} ${currentUser.last_name}` : ''}</span>
+							<span className='user-role'>{currentUser ? currentUser.role : ''}</span>
+						</div>
 					</div>
 				</div>
+
 			</div>
+			<div className='nav-left-container'>
+				<NavLink to='/users/feeds' className={({ isActive }) => isActive ? `active` : undefined}>
+					<div className='menu-item'>
+						<GridViewIcon />
+						<span>Feeds</span>
+					</div>
+				</NavLink>
+				<NavLink to='/users/profile' className={({ isActive }) => isActive ? `active` : undefined}>
+					<div className='menu-item'>
+						<PersonIcon />
+						<span>Profile</span>
+					</div>
+				</NavLink>
+				<div className='menu-item' onClick={HandleLogoutClick}>
+					<LogoutIcon />
+					<span>Logout</span>
+				</div>
+			</div>			
 			<Outlet />
+			{currentUser.role === 'admin' ? <UserList /> : null}
 		</>
-
-
 	)
 }
 

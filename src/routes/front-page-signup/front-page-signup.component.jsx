@@ -28,7 +28,6 @@ const FrontPageSignup = () => {
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-		console.log(value);
 		setFormFields({ ...formFields, [name]: value });
 	}
 
@@ -71,7 +70,8 @@ const FrontPageSignup = () => {
 						<FrontPageInput labelText="First name" type="text" name="firstName" value={firstName} onChange={handleChange} required />
 						<FrontPageInput labelText="Last name" type="text" name="lastName" value={lastName} onChange={handleChange} required />
 						<FrontPageInput labelText="Email" type="email" name="email" value={email} onChange={handleChange} required />
-						<FrontPageInput labelText="Phone Number" type="number" name="phoneNumber" value={phoneNumber} onChange={handleChange} required />
+						<FrontPageInput labelText="Phone Number" type="tel" name="phoneNumber" value={phoneNumber} onChange={handleChange} minLength="10"
+							maxLength="10" required />
 						<FormControl sx={{ width: '358px', }} variant="standard">
 							<span className='password-title'> Password</span>
 							<Input

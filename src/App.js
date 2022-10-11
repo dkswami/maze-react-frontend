@@ -8,6 +8,7 @@ import FrontPageHome from "./routes/front-page-home/front-page-home.component";
 import FrontPageSignup from "./routes/front-page-signup/front-page-signup.component";
 import FrontPageLogin from "./routes/front-page-login/front-page-login.component";
 import Profile from "./routes/profile/profile.component";
+import RequireAuth from "./utils/require-auth";
 
 function App() {
 	return (
@@ -20,8 +21,8 @@ function App() {
 				</Route>
 			</Routes>
 			<Routes>
-				<Route path='/users/' element={<Navigation />} >
-					<Route index path='/users/feeds' element={<Feeds />} />
+				<Route path='/users' element={ <RequireAuth> <Navigation /> </RequireAuth>} >
+					<Route index path='/users/feeds' element={<RequireAuth> <Feeds /></RequireAuth>} />
 					<Route path="/users/profile" element={<Profile />} />
 					<Route path='/users/comments' element={<CompletePost />} />
 					<Route path='/users/edit/:postId' element={<EditPost />} />
