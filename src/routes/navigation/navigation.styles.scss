@@ -66,7 +66,7 @@
 		font-family: 'Montserrat';
 		font-style: normal;
 		font-weight: 600;
-		font-size: 24px;
+		font-size: 18px;
 		line-height: 29px;
 		letter-spacing: 0.04em;
 		color: #606165;
@@ -91,6 +91,7 @@
 .active {
 	background: #377DFF;
 	border-radius: 14px;
+	height: auto;
 
 	svg {
 		color: white;

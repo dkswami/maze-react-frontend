@@ -7,7 +7,7 @@ const CLIENT_SECRET="uZJwH353nS-B-ureeOva7x_79mTQetN25NLxscsMN2g"
 
 const LOGIN_URL = baseURL+"/oauth/token";
 const SIGNUP_URL = baseURL+"/users";
-const UPDATE_PROFILE_URL = baseURL+"/users";
+const ALL_USERS_URL = baseURL+"/users";
 const LOGOUT_URL = baseURL+"/oauth/revoke";
 const CURRENT_USER_URL = baseURL+"/users/me";
 
@@ -57,6 +57,20 @@ export const getCurrentUser = async (accessToken) => {
 	}
 	try {
 		const response = await axios.get(CURRENT_USER_URL, config);
+		return response.data;
+	} catch (error) {
+		return error.response.data;
+	}
+}
+
+export const getAllUsers = async (accessToken) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${accessToken}`,
+		},
+	}
+	try {
+		const response = await axios.get(ALL_USERS_URL, config);
 		return response.data;
 	} catch (error) {
 		return error.response.data;

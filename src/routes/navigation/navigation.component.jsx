@@ -60,11 +60,19 @@ const Navigation = () => {
 						<span>Profile</span>
 					</div>
 				</NavLink>
+				{currentUser.role === 'admin' ? (
+					<NavLink to='/users/manageusers' className={({ isActive }) => isActive ? `active` : undefined}>
+						<div className='menu-item' style={ {height: '90px', paddingBottom: '25px'}}>
+							<PersonIcon />
+							<span>Manage Users</span>
+						</div>
+					</NavLink>
+				) : null }
 				<div className='menu-item' onClick={HandleLogoutClick}>
 					<LogoutIcon />
 					<span>Logout</span>
 				</div>
-			</div>			
+			</div>
 			<Outlet />
 			{currentUser.role === 'admin' ? <UserList /> : null}
 		</>
