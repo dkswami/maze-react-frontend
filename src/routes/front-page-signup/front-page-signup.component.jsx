@@ -122,7 +122,7 @@ const FrontPageSignup = () => {
 						<FormControlLabel control={<Checkbox color="success" />} label="Remember me" />
 						<FormControlLabel control={<Checkbox color="success" required />} label={`I agree to all the Terms and Privacy policy`} required />
 					</div>
-					<Button className='login-button' type='submit' variant="primary" size="lg">
+					<Button className='signup-login-button' type='submit' variant="primary" size="lg">
 						Login
 					</Button>
 					<span className='already-login'>

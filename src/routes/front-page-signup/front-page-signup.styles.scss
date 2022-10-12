@@ -2,10 +2,10 @@
 	position: relative;
 	width: 80%;
 	/* height: 70%; */
-	padding-top: 3%;
-	padding-bottom: 3%;
+	padding-top: 2%;
+	padding-bottom: 15px;
 	left: 11%;
-	top: 4%;
+	top: 2%;
 	background: linear-gradient(152.97deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
 	backdrop-filter: blur(21px);
 	border-radius: 16px;
@@ -13,7 +13,7 @@
 
 .signup-content {
 	position: relative;
-	left: 11%;
+	left: 10%;
 	top: 6%;
 	width: 69%;
 }
@@ -22,16 +22,16 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	width: 322px;
-	height: 79px;
+	width: 300px;
+    height: 60px;
 
 	h2 {
-		width: 246px;
-		height: 39px;
+		width: 243px;
+		height: 31px;
 		font-family: "Poppins";
 		font-style: normal;
 		font-weight: 600;
-		font-size: 28px;
+		font-size: 26px;
 		line-height: 140%;
 		letter-spacing: -0.02em;
 		color: #FFFFFF;
@@ -51,26 +51,32 @@
 .signup-fields-container {
 	display: grid;
 	grid-template-columns: auto auto;
-	gap: 11%;
-	padding-top: 30px;
+	column-gap: 13%;
+	row-gap: 8%;
+	padding-top: 22px;
 }
 
 .signup-checkbox {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	position: relative;
-	margin-top: 10%;
+	margin-top: 6%;
+	gap: 20px;
 	color: white;
 }
 
 .already-login {
 	position: relative;
-	margin-top: 4%;
+	margin-top: 2%;	
 	color: #FFFFFF;
 	display: flex;
-
 	a {
 		margin-left: 3px;
 		color: #007AFF;
 	}
+}
+.signup-login-button {
+	margin-top: 2%;
+	width: 206px;
+    height: 48px;
 }
