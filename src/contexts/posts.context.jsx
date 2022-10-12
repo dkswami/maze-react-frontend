@@ -10,6 +10,7 @@ export const PostsContext = createContext({
 export const PostsProvider = ({ children }) => {
 
 	const [wholePostsData, setWholePostsData] = useState([]);
+	const { isLoggedIn  } = useContext(UserContext);
 
 	useEffect(() => {
 		const access_token = localStorage.getItem('access_token')
@@ -29,7 +30,7 @@ export const PostsProvider = ({ children }) => {
 		if(access_token) {
 			getAllPost();
 		}
-	}, []);
+	}, [isLoggedIn]);
 
 	const value = { wholePostsData}
 	return (

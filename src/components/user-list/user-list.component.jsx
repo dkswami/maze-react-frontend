@@ -6,12 +6,10 @@ import { getAllUsers } from '../../utils/axios.api';
 
 const UserListItem = ({user}) => {
 	return (
-		<div className='user-list-body'>
 			<div className='user-list-item'>
 				<MazeLogo className='user-list-dp' />
 				<span>{user.first_name} {user.last_name}</span>
 			</div>
-		</div>
 	)
 }
 

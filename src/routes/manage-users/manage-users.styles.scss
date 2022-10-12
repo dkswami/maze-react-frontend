@@ -27,7 +27,7 @@
 	align-content: center;
 	justify-content: space-between;
 	align-items: center;
-	gap: 10%;
+	gap: 5%;
 	height: 65px;
 	background: linear-gradient(0deg, #FFFFFF, #FFFFFF), #FFFFFF;
 	border-radius: 14px;
@@ -41,6 +41,7 @@
 		font-size: 18px;
 		line-height: 22px;
 		color: #606165;
+		width: 210px;
 	}
 
 	.manage-number {
@@ -50,6 +51,7 @@
 		font-size: 14px;
 		line-height: 17px;
 		color: #9FA0A3;
+		width: 100px;
 	}
 
 	.manage-email {
@@ -59,6 +61,7 @@
 		font-size: 14px;
 		line-height: 17px;
 		color: #9FA0A3;
+		width: 200px;
 	}
 
 	button {
