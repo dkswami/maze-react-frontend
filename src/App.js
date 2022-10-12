@@ -10,6 +10,7 @@ import FrontPageLogin from "./routes/front-page-login/front-page-login.component
 import Profile from "./routes/profile/profile.component";
 import RequireAuth from "./utils/require-auth";
 import ManageUsers from "./routes/manage-users/manage-users.component";
+import AddUser from "./routes/add-user/add-user.component";
 
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 					<Route index path='/users/feeds' element={<RequireAuth> <Feeds /></RequireAuth>} />
 					<Route path="/users/profile" element={<Profile />} />
 					<Route path='/users/manageusers' element={<ManageUsers />} />
+					<Route path='/users/adduser' element={ <AddUser/> } />
 					<Route path='/users/comments' element={<CompletePost />} />
 					<Route path='/users/edit/:postId' element={<EditPost />} />
 				</Route>

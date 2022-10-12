@@ -44,11 +44,6 @@
 			padding: 0px;
 			gap: 27px;
 
-			.user-list-dp {
-				background-color: #d3bffd80;
-				border-radius: 18px;
-			}
-
 			span {
 				font-family: 'Montserrat';
 				font-style: normal;
@@ -61,4 +56,8 @@
 	}
 
 
+}
+.user-list-dp {
+	background-color: #d3bffd80;
+	border-radius: 18px;
 }

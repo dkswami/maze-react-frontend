@@ -17,7 +17,6 @@ const UserListItem = ({user}) => {
 
 const UserList = () => {
 	const [users, setUsers] = useState([]);
-	console.log(users)
 
 	useEffect(() => {
 		const access_token = localStorage.getItem('access_token')
