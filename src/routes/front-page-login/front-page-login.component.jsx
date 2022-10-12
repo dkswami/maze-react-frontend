@@ -36,7 +36,7 @@ const FrontPageLogin = () => {
 		const access_token = localStorage.getItem('access_token')
 		if (access_token) {
 			Navigate('/users/feeds', { replace: true });
-
+			setIsLoggedIn(true);
 		}
 		switch (response.error) {
 			case 'invalid_grant':

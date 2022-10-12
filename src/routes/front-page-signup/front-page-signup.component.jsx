@@ -38,6 +38,7 @@ const FrontPageSignup = () => {
 			alert("Passwords don't match");
 		} else {
 			const response = await SignupWithEmailAndPassword(formFields);
+			localStorage.setItem("access_token", response.data.access_token);
 			console.log(response);
 			const access_token = localStorage.getItem('access_token')
 			if (access_token) {

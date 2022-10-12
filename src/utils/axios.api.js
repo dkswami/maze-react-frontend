@@ -40,8 +40,7 @@ export const SignupWithEmailAndPassword = async ({firstName, lastName, phoneNumb
 		client_id: CLIENT_ID,
 	}
 	try {
-		const response = await axios.post(SIGNUP_URL, data);
-		localStorage.setItem("access_token", response.data.access_token);
+		const response = await axios.post(SIGNUP_URL, data);		
 		return response.data;		
 	} catch (error) {	
 		

@@ -4,6 +4,7 @@ import { TextField } from '@mui/material';
 import { FormControl, InputAdornment, IconButton, OutlinedInput, InputLabel, Select, MenuItem } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { SignupWithEmailAndPassword } from '../../utils/axios.api';
 
 const DefaultUserFormData = {
 	firstName: '',
@@ -18,16 +19,38 @@ const AddUser = () => {
 	const [userFormData, setUserFormData] = useState(DefaultUserFormData);
 	const [showPassword, setShowPassword] = useState(false);
 	const { firstName, lastName, email, phoneNumber, password, role } = userFormData;
-	console.log(userFormData)
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
 		setUserFormData({ ...userFormData, [name]: value })
 	}
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-
+		const response = await SignupWithEmailAndPassword(userFormData);
+		console.log(response);
+		if (response.access_token) {
+			alert('User added successfully !');
+		}
+		switch ( response.errors && response.errors[0]) {
+			case 'invalid_grant':
+				alert('Incorrect credentials ! ');
+				break;
+			case "Email can't be blank":
+				alert("Email can't be blank");
+				break;
+			case "Password can't be blank":
+				alert("Password can't be blank");
+				break;
+			case "Email is invalid":
+				alert("Email is invalid");
+				break;
+			case 'Email has already been taken':
+				alert('Email has already been taken ! ');
+				break;
+			default:
+				console.log(response);
+		}
 	}
 
 	return (

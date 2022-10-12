@@ -27,7 +27,7 @@ export const UserProvider = ({ children }) => {
 		if(access_token) {
 			getUser();
 		}
-	}, []);
+	}, [isLoggedIn]);
 
 	return (
 		<UserContext.Provider value={{ currentUser, isLoggedIn, setCurrentUser, setIsLoggedIn }}>
