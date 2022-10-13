@@ -30,10 +30,6 @@ export const UserProvider = ({ children }) => {
 		if(access_token) {
 			getUser();
 		}
-		else {
-			Navigate('/login');
-		}
-
 	}, [access_token]);
 
 	return (

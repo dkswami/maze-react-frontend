@@ -15,6 +15,7 @@ const CompletePost = () => {
 	return (
 		<>
 			<div className='all-comments-container'>
+				<div className='whole-post-container'>
 				{wholePostsData.map((post) => {
 					if (post.id === postId) {
 						return (
@@ -28,6 +29,8 @@ const CompletePost = () => {
 						);
 					}
 				})}
+				</div>
+				
 
 				{/* { wholePostsData.map(()=> {
 					if( comment.attributes.post_id == postId) {
