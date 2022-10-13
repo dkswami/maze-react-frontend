@@ -23,10 +23,12 @@ const AddUser = () => {
 	const handleChange = (event) => {
 		const { name, value } = event.target;
 		setUserFormData({ ...userFormData, [name]: value })
+		console.log(userFormData);
 	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+		console.log(userFormData);
 		const response = await SignupWithEmailAndPassword(userFormData);
 		console.log(response);
 		if (response.access_token) {

@@ -4,11 +4,9 @@ import { UserContext } from './user.context';
 
 export const PostsContext = createContext({
 	wholePostsData: [],
-	wholeCommentsData: []
 });
 
 export const PostsProvider = ({ children }) => {
-
 	const [wholePostsData, setWholePostsData] = useState([]);
 	const { isLoggedIn  } = useContext(UserContext);
 

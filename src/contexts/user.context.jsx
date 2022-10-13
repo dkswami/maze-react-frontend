@@ -13,6 +13,7 @@ export const UserProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState({});
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const Navigate = useNavigate();
+	const access_token = localStorage.getItem('access_token')
 
 	useEffect(() => {
 		const access_token = localStorage.getItem('access_token')
@@ -26,14 +27,14 @@ export const UserProvider = ({ children }) => {
 				console.log(error)
 			}
 		}
-		if(isLoggedIn) {
+		if(access_token) {
 			getUser();
 		}
 		else {
 			Navigate('/login');
 		}
 
-	}, [isLoggedIn]);
+	}, [access_token]);
 
 	return (
 		<UserContext.Provider value={{ currentUser, isLoggedIn, setCurrentUser, setIsLoggedIn }}>

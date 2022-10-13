@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Navigation from "./routes/navigation/navigation.component";
 import Feeds from "./routes/feeds/feeds.component";
 import CompletePost from "./routes/complete-post/complete-post.component";
@@ -13,13 +13,14 @@ import ManageUsers from "./routes/manage-users/manage-users.component";
 import AddUser from "./routes/add-user/add-user.component";
 
 function App() {
+	const accessToken = localStorage.getItem("access_token");
 	return (
 		<>
 			<Routes>
 				<Route path="/" element={<FrontPageNav />} >
 					<Route index element={<FrontPageHome />} />
-					<Route path="/signup" element={<FrontPageSignup />} />
-					<Route path='/login' element={<FrontPageLogin />} />					
+					<Route path="/signup" element={ accessToken ? <Navigate to='/users/feeds' />  :  <FrontPageSignup />} />
+					<Route path='/login' element={ accessToken ? <Navigate to='/users/feeds' />  :  <FrontPageLogin />} />					
 				</Route>
 			</Routes>
 			<Routes>

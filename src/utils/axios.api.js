@@ -31,13 +31,14 @@ export const loginWithEmailAndPassword = async ({email, password}) => {
 	}
 }
 
-export const SignupWithEmailAndPassword = async ({firstName, lastName, phoneNumber, email, password}) => {
+export const SignupWithEmailAndPassword = async ({firstName, lastName, phoneNumber, email, password, role}) => {
 	const data = {
 		first_name: firstName,
 		last_name: lastName,
 		phone_number: phoneNumber,
 		email: email,
 		password: password,
+		role: role,
 		client_id: CLIENT_ID,
 	}
 	try {

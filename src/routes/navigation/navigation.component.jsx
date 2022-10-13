@@ -6,6 +6,7 @@ import { ReactComponent as MazeLogo } from '../../assets/Maze.svg';
 import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg';
 import GridViewIcon from '@mui/icons-material/GridView';
 import PersonIcon from '@mui/icons-material/Person';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { UserContext } from '../../contexts/user.context';
 
@@ -18,7 +19,7 @@ const Navigation = () => {
 		if (window.confirm("Are you sure to logout?")) {
 			localStorage.removeItem('access_token');
 			Navigate('/login');
-			setIsLoggedIn(false);
+			/* setIsLoggedIn(false); */
 		}
 	}
 
@@ -61,7 +62,7 @@ const Navigation = () => {
 				{currentUser.role === 'admin' ? (
 					<NavLink to='/users/manageusers' className={({ isActive }) => isActive ? `active` : undefined}>
 						<div className='menu-item' style={{ height: '90px', paddingBottom: '25px' }}>
-							<PersonIcon />
+							<ManageAccountsIcon />
 							<span>Manage Users</span>
 						</div>
 					</NavLink>
