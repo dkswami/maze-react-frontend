@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getCurrentUser } from "../utils/axios.api";
 
 export const UserContext = createContext({
@@ -11,6 +12,7 @@ export const UserContext = createContext({
 export const UserProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState({});
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const Navigate = useNavigate();
 
 	useEffect(() => {
 		const access_token = localStorage.getItem('access_token')
@@ -24,9 +26,13 @@ export const UserProvider = ({ children }) => {
 				console.log(error)
 			}
 		}
-		if(access_token) {
+		if(isLoggedIn) {
 			getUser();
 		}
+		else {
+			Navigate('/login');
+		}
+
 	}, [isLoggedIn]);
 
 	return (

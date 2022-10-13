@@ -38,22 +38,25 @@ const FrontPageSignup = () => {
 			alert("Passwords don't match");
 		} else {
 			const response = await SignupWithEmailAndPassword(formFields);
-			localStorage.setItem("access_token", response.data.access_token);
+			localStorage.setItem("access_token", response.access_token);
 			console.log(response);
-			const access_token = localStorage.getItem('access_token')
-			if (access_token) {
-				Navigate('/users/feeds')
-				setIsLoggedIn(true);
-			}
-			switch (response.errors[0]) {
-				case 'invalid_grant':
-					alert('Incorrect credentials ! ');
-					break;
-				case 'Email has already been taken':
-					alert('Email has already been taken ! ');
-					break;
-				default:
-					console.log(response);
+			try {
+				const access_token = localStorage.getItem('access_token')
+				if (access_token) {
+					Navigate('/users/feeds')
+					setIsLoggedIn(true);
+				}
+			} catch {
+				switch (response.errors[0]) {
+					case 'invalid_grant':
+						alert('Incorrect credentials ! ');
+						break;
+					case 'Email has already been taken':
+						alert('Email has already been taken ! ');
+						break;
+					default:
+						console.log(response);
+				}
 			}
 		}
 

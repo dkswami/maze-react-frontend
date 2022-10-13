@@ -10,6 +10,7 @@ const SIGNUP_URL = baseURL+"/users";
 const ALL_USERS_URL = baseURL+"/users";
 const LOGOUT_URL = baseURL+"/oauth/revoke";
 const CURRENT_USER_URL = baseURL+"/users/me";
+const DEACTIVATE_USER_URL =baseURL+"/users/deactivate";
 
 
 export const loginWithEmailAndPassword = async ({email, password}) => {
@@ -86,6 +87,25 @@ export const logoutUserWithToken = async (token) => {
 		const response = await axios.post(LOGOUT_URL, data);
 		return response.data;	
 	} catch (error) {	
+		return error.response.data;
+	}
+}
+
+export const ChangeDeactivatedUser = async ({id, deactivated}, accessToken) => {
+	const data = {
+		id: id,
+		deactivated: deactivated,
+		client_id: CLIENT_ID,
+	}
+	const config = {
+		headers: {
+			Authorization: `Bearer ${accessToken}`,
+		},
+	}
+	try {
+		const response = await axios.patch(DEACTIVATE_USER_URL, data, config);		
+		return response.data;		
+	} catch (error) {			
 		return error.response.data;
 	}
 }

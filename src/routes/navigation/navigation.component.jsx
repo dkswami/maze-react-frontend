@@ -35,7 +35,7 @@ const Navigation = () => {
 					<SearchIcon className='search-icon' />
 					<input type="text" className="search-input" placeholder='Search for something here' />
 				</div>
-				<div className='user-list-info'>
+				<Link to='/users/profile'>
 					<div className='user-info-dp'>
 						<img src={profilePic} alt='user dp' />
 						<div className='user-info'>
@@ -43,8 +43,7 @@ const Navigation = () => {
 							<span className='user-role'>{currentUser ? currentUser.role : ''}</span>
 						</div>
 					</div>
-				</div>
-
+				</Link>
 			</div>
 			<div className='nav-left-container'>
 				<NavLink to='/users/feeds' className={({ isActive }) => isActive ? `active` : undefined}>
@@ -61,19 +60,19 @@ const Navigation = () => {
 				</NavLink>
 				{currentUser.role === 'admin' ? (
 					<NavLink to='/users/manageusers' className={({ isActive }) => isActive ? `active` : undefined}>
-						<div className='menu-item' style={ {height: '90px', paddingBottom: '25px'}}>
+						<div className='menu-item' style={{ height: '90px', paddingBottom: '25px' }}>
 							<PersonIcon />
 							<span>Manage Users</span>
 						</div>
 					</NavLink>
-				) : null }
+				) : null}
 				<div className='menu-item' onClick={HandleLogoutClick}>
 					<LogoutIcon />
 					<span>Logout</span>
 				</div>
 			</div>
 			<Outlet />
-			
+
 		</>
 	)
 }

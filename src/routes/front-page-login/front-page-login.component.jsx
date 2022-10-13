@@ -42,6 +42,9 @@ const FrontPageLogin = () => {
 			case 'invalid_grant':
 				alert('Incorrect credentials ! ');
 				break;
+			case 'User is deactivated':
+				alert('User is deactivated ! ');
+				break;
 			default:
 				console.log(response);
 		}
