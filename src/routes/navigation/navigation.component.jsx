@@ -19,7 +19,7 @@ const Navigation = () => {
 		if (window.confirm("Are you sure to logout?")) {
 			localStorage.removeItem('access_token');
 			Navigate('/login');
-			/* setIsLoggedIn(false); */
+			setIsLoggedIn(false);
 		}
 	}
 

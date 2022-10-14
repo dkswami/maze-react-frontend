@@ -13,25 +13,27 @@ import ManageUsers from "./routes/manage-users/manage-users.component";
 import AddUser from "./routes/add-user/add-user.component";
 
 function App() {
-	const accessToken = localStorage.getItem("access_token");
 	return (
 		<>
 			<Routes>
 				<Route path="/" element={<FrontPageNav />} >
 					<Route index element={<FrontPageHome />} />
-					<Route path="/signup" element={ accessToken ? <Navigate to='/users/feeds' />  :  <FrontPageSignup />} />
-					<Route path='/login' element={ accessToken ? <Navigate to='/users/feeds' />  :  <FrontPageLogin />} />					
+					<Route path="/signup" element={<FrontPageSignup />} />
+					<Route path='/login' element={<FrontPageLogin />} />
 				</Route>
 			</Routes>
 			<Routes>
-				<Route path='/users' element={ <RequireAuth> <Navigation /> </RequireAuth>} >
-					<Route index path='/users/feeds' element={<RequireAuth> <Feeds /></RequireAuth>} />
-					<Route path="/users/profile" element={<Profile />} />
-					<Route path='/users/manageusers' element={<ManageUsers />} />
-					<Route path='/users/adduser' element={ <AddUser/> } />
-					<Route path='/users/comments' element={<CompletePost />} />
-					<Route path='/users/edit/:postId' element={<EditPost />} />
+				<Route element={<RequireAuth />} >
+					<Route path='/users' element={<Navigation />} >
+						<Route index path='/users/feeds' element={<Feeds />} />
+						<Route path="/users/profile" element={<Profile />} />
+						<Route path='/users/manageusers' element={<ManageUsers />} />
+						<Route path='/users/adduser' element={<AddUser />} />
+						<Route path='/users/comments' element={<CompletePost />} />
+						<Route path='/users/edit/:postId' element={<EditPost />} />
+					</Route>
 				</Route>
+
 			</Routes>
 		</>
 	);

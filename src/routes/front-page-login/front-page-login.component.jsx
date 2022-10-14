@@ -35,7 +35,7 @@ const FrontPageLogin = () => {
 
 		const access_token = localStorage.getItem('access_token')
 		if (access_token) {
-			Navigate('/users/feeds', { replace: true });
+			Navigate('/users/feeds');
 			setIsLoggedIn(true);
 		}
 		switch (response.error) {
@@ -46,7 +46,7 @@ const FrontPageLogin = () => {
 				alert('User is deactivated ! ');
 				break;
 			default:
-				console.log(response);
+				console.log(response.error);
 		}
 	}
 
