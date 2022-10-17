@@ -11,6 +11,7 @@ import Profile from "./routes/profile/profile.component";
 import RequireAuth from "./utils/require-auth";
 import ManageUsers from "./routes/manage-users/manage-users.component";
 import AddUser from "./routes/add-user/add-user.component";
+import Reports from "./routes/reports/reports.component";
 
 function App() {
 	return (
@@ -31,6 +32,7 @@ function App() {
 						<Route path='/users/adduser' element={<AddUser />} />
 						<Route path='/users/comments' element={<CompletePost />} />
 						<Route path='/users/edit/:postId' element={<EditPost />} />
+						<Route path="/users/reports" element={ <Reports />} />
 					</Route>
 				</Route>
 

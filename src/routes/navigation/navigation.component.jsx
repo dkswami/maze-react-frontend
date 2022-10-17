@@ -2,13 +2,16 @@ import React, { Fragment, useState, useContext } from 'react'
 import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom';
 import profilePic from '../../assets/default-profile-pic.png';
 
+import { ReactComponent as ReportsIcon} from '../../assets/reports.svg'
 import { ReactComponent as MazeLogo } from '../../assets/Maze.svg';
 import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg';
 import GridViewIcon from '@mui/icons-material/GridView';
 import PersonIcon from '@mui/icons-material/Person';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LogoutIcon from '@mui/icons-material/Logout';
+import EventNoteIcon from '@mui/icons-material/EventNote';
 import { UserContext } from '../../contexts/user.context';
+
 
 import './navigation.styles.scss';
 
@@ -64,6 +67,14 @@ const Navigation = () => {
 						<div className='menu-item' style={{ height: '90px', paddingBottom: '25px' }}>
 							<ManageAccountsIcon />
 							<span>Manage Users</span>
+						</div>
+					</NavLink>
+				) : null}
+				{currentUser.role === 'admin' ? (
+					<NavLink to='/users/reports' className={({ isActive }) => isActive ? `active` : undefined}>
+						<div className='menu-item'>
+							<EventNoteIcon />
+							<span>Reports</span>
 						</div>
 					</NavLink>
 				) : null}
