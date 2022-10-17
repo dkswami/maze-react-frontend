@@ -5,7 +5,7 @@ const RequireAuth = () => {
 
 	return (
 		access_token ? <Outlet /> : <Navigate to='/login' />
-	)	
+	)
 }
 
 export default RequireAuth
