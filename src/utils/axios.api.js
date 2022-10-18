@@ -11,6 +11,8 @@ const ALL_USERS_URL = baseURL+"/users";
 const LOGOUT_URL = baseURL+"/oauth/revoke";
 const CURRENT_USER_URL = baseURL+"/users/me";
 const DEACTIVATE_USER_URL =baseURL+"/users/deactivate";
+const LIKE_POST_URL = baseURL+"/likes";
+const UNLIKE_POST_URL = baseURL+"/likes/remove";
 
 
 export const loginWithEmailAndPassword = async ({email, password}) => {
@@ -107,6 +109,42 @@ export const ChangeDeactivatedUser = async ({id, deactivated}, accessToken) => {
 		const response = await axios.patch(DEACTIVATE_USER_URL, data, config);		
 		return response.data;		
 	} catch (error) {			
+		return error.response.data;
+	}
+}
+
+export const LikePost = async (postId, accessToken) => {
+	const data = {
+		post_id: postId,
+	}
+	const config = {
+		headers: {
+			Authorization: `Bearer ${accessToken}`,
+		},
+	}
+	try {
+		const response = await axios.post(LIKE_POST_URL, data , config);
+		return response.data;		
+	} catch (error) {	
+		console.log(error)
+		return error.response.data;
+	}
+}
+
+export const UnlikePost = async (postId, accessToken) => {
+	const data = {
+		post_id: postId,
+	}
+	const config = {
+		headers: {
+			Authorization: `Bearer ${accessToken}`,
+		},
+	}
+	try {
+		const response = await axios.post(UNLIKE_POST_URL, data, config);
+		return response.data;		
+	} catch (error) {	
+		console.log(error)
 		return error.response.data;
 	}
 }

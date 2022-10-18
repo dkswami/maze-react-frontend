@@ -13,6 +13,8 @@ import { UserContext } from '../../contexts/user.context';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import './post.styles.scss';
+import { LikePost, UnlikePost } from '../../utils/axios.api';
+import { useEffect } from 'react';
 
 const DefaultnewCommentData = {
 	body: "",
@@ -41,13 +43,43 @@ const Post = ({ post }) => {
 			alert("please enter something in comment!");
 		} else {
 			try {
-				
+
 				const response = await axios.post('http://localhost:3000/api/v1/comments', newCommentData);
 				alert("New comment added successfully!");
 				window.location.reload();
 			} catch (error) {
 				console.error(error);
 			}
+		}
+	}
+
+	useEffect(() => {
+		const likedata = post.likes.find(like => like.user_id == currentUser.id);
+		if (likedata) {
+			if (likedata.user_id == currentUser.id) {
+				setIsLiked(true);
+			}
+		}
+	}, []);
+
+	const OnLikeClick = async () => {
+		setIsLiked(true)
+		const accessToken = localStorage.getItem("access_token");
+		try {
+			const response = LikePost(post.id, accessToken);
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+	const OnUnlikeClick = async () => {
+		setIsLiked(false)
+		console.log(post.id)
+		const accessToken = localStorage.getItem("access_token");
+		try {
+			const response = UnlikePost(post.id, accessToken);
+		} catch (error) {
+			console.log(error)
 		}
 	}
 
@@ -63,18 +95,25 @@ const Post = ({ post }) => {
 			{isActionDropdownOpen && <ActionDropdownPost postId={post.id} />}
 			<div className='description'>{post.description}</div>
 			<div className='likes-comments-count'>
-				<span>221 Likes</span>
+				<span>{post.likes_count}</span>
 				<span><SingleDot /></span>
 				<span> {post.comments.length} Comments</span>
 			</div>
 			<hr className='line1' />
 			<div className='add-like-comment-container'>
-				<div className={`add `} onClick={() => setIsLiked(!isLiked)}>
-
-					{isLiked ? <FavoriteIcon sx={{ color: 'red' }} /> : <LikeIcon />}
-
-					<span>{isLiked ? "Unlike" : "Like"}</span>
-				</div>
+				{
+					isLiked ? (
+						<div className={`add `} onClick={OnUnlikeClick}>
+							<FavoriteIcon sx={{ color: 'red' }} />
+							<span> Unlike</span>
+						</div>
+					) : (
+						<div className={`add `} onClick={OnLikeClick}>
+							<LikeIcon />
+							<span>Like</span>
+						</div>
+					)
+				}
 				<Link to='/users/comments' state={{ postId: post.id }}>
 					<div className='add'>
 						<CommentIcon />
